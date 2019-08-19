@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { Tab4Page } from './tab4.page';
+import { HttpClient } from '@angular/common/http';
 
 const routes: Routes = [
   {

@@ -29,7 +29,12 @@ export class ClienteService {
   getCliente(email:string){
     return this.http.get<cliente[]>(`${API_URL}/cliente?emailCliente=${email}`, httpOptions)
   }
-
+  
+  //Pegar todos os clientes do banco de dados
+  getAllCliente(){
+    return this.http.get<cliente[]>(`${API_URL}/cliente`, httpOptions)
+  }
+  
   //Atualizar os dados do Cliente
   updateCliente(cliente:cliente){
     return this.http.post(`${API_URL}/cliente`, cliente, httpOptions);

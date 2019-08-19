@@ -33,4 +33,25 @@
     <h6 *ngIf="errorData" class="error"> {{msgData}}</h6>
     <ion-button type="submit" shape="round"  strong><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button>
   </form>
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Matricula</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let clientes of cliente">
+          <th class="ion-text-center" scope="row">{{ clientes.id }}</th>
+          <td class="ion-text-center">{{ clientes.nome }}</td>
+          <td class="ion-text-center">{{ clientes.endereco }}</td>
+          <td class="ion-text-center">{{ clientes.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </ion-content>
+

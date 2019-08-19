@@ -13,6 +13,9 @@ import { cliente } from '../models/cliente.models';
 export class Tab4Page implements OnInit {
 
   public formulario:any;
+
+  public cliente: cliente[]
+
   msgNome = "";
   msgEmail = "";
   msgEndereco = "";
@@ -42,6 +45,7 @@ export class Tab4Page implements OnInit {
         ])],
       data:["", Validators.required]
     })
+    this.pegarCliente();
   }
   
   add(){
@@ -54,6 +58,14 @@ export class Tab4Page implements OnInit {
                                                           error => { console.log(error);  }
                                                           )
     this.formulario.reset();
+    window.location.reload()
+  }
+
+  pegarCliente(){
+    this.clienteService.getAllCliente().subscribe(
+      clienteDB => this.cliente = clienteDB,
+      error => console.log(error)
+    )
   }
   logar(){
     
