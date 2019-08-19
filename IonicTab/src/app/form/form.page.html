@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastro Profissionais</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup] = "proForm" (submit)="add()">
+    <ion-item>
+      <ion-label class="form" position="floating">Nome</ion-label>
+      <ion-input type="text" formControlName="nome" placeholder="Digite seu nome" id="nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label class="form" position="floating">E-mail</ion-label>
+      <ion-input type="email" formControlName="email" placeholder="Digite seu email" id="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label class="form" position="floating">Endereço</ion-label>
+      <ion-input type="text" formControlName="endereco" placeholder="Digite seu endereço" id="endereco"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label class="form" position="floating">Senha</ion-label>
+      <ion-input type="password" formControlName="password" placeholder="Digite seu Senha" id="password" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label class="form" position="floating">Data de nascimento</ion-label>
+      <ion-datetime value="{{vlr | date: dd-MM-yyyy}}" displayFormat="DD MM YY" placeholder="Select Date"></ion-datetime>
+    </ion-item>
+    <ion-button type="submit" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button><ion-button (click)="apareceae()" shape="round"><ion-icon slot="end" name="star"></ion-icon>limpar</ion-button>
+  </form>
+  <!--<input (keyup)="valorBusca = $event.target.value">
+  <p>{{valorBusca}}</p>-->
+  <ion-item>
+    <ion-label class="form" position="floating">E-mail</ion-label>
+    <ion-input type="email" (keyup)="valorBusca = $event.target.value" placeholder="Digite seu email" id="emailteste"></ion-input>
+  </ion-item>
+  <ion-button type="submit" (click)="pegar()" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button>
+</ion-content>

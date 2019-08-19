@@ -1,0 +1,34 @@
+<ion-header >
+  <ion-toolbar id="titulo" color="primary">
+    <ion-title >
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+    <ion-card class="welcome-card">
+      <img src="/assets/seneca/seneca1-1.jpg" alt="Cade meu seneca aqui!!!" />
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Seneca I</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="ion-text-center">Vamos estudar a aeronave mais usada para o curso de MLTE(multimotor terreste) nas escolas e aeroclubes pelo Brasil.</p>
+      </ion-card-content>
+    </ion-card>
+  <ion-row>
+    <ion-col col="6" align-self-start>
+      <ion-item (click)="mdlEgn()"><ion-img class="icones" src="./assets/seneca/motor.jpg"></ion-img></ion-item>
+    </ion-col>
+    <ion-col col="6" align-self-end>
+      <ion-item  (click)="mdlSc2()"><ion-img class="icones" src="./assets/icon/secao2.jpg"></ion-img></ion-item>
+    </ion-col>  
+  </ion-row>
+  <ion-row>
+      <ion-col col="6">
+        <ion-item (click)="mdlSc3()"><ion-img class="icones" src="./assets/icon/lavagem.png"></ion-img></ion-item>
+      </ion-col>
+      <ion-col col="6">
+        <ion-item (click)="mdlSc4()"><ion-img class="icones" src="./assets/icon/manutencao.png"></ion-img></ion-item>
+      </ion-col>  
+    </ion-row>
+</ion-content>

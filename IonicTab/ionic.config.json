@@ -1,0 +1,7 @@
+{
+  "name": "IonicTab",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

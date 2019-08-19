@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastro de Clientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup] = "formulario" (submit) = 'logar()'>
+    <ion-item>
+      <ion-label class="form" position="floating">Nome</ion-label>
+      <ion-input formControlName="nome" type="text" placeholder="Digite seu nome" name="nome" id="nome" required></ion-input>
+    </ion-item>
+    <h6 *ngIf="errorNome" class="error ion-text-center"> {{msgNome}}</h6>
+    <ion-item>
+      <ion-label class="form" position="floating">E-mail</ion-label>
+      <ion-input type="text" formControlName="email" placeholder="Digite seu email" name="email" id="email" required></ion-input>
+    </ion-item>
+    <h6 *ngIf="errorEmail" class="error"> {{msgEmail}}</h6>
+    <ion-item>
+      <ion-label class="form" position="floating">Endereço</ion-label>
+      <ion-input type="text" formControlName="endereco" placeholder="Digite seu endereço" name="endereco" id="endereco" required></ion-input>
+    </ion-item>
+    <h6 *ngIf="errorEndereco" class="error"> {{msgEndereco}}</h6>
+    <ion-item>
+      <ion-label class="form" position="floating">Senha</ion-label>
+      <ion-input type="password" formControlName="password" placeholder="Digite seu Senha" name="password" id="password" min="5" maxlenght="15" required></ion-input>
+    </ion-item>
+    <h6 *ngIf="errorPass" class="error"> {{msgPass}}</h6>
+    <ion-item>
+      <ion-label class="form" position="floating">Data de nascimento</ion-label>
+      <ion-datetime value="{{vlr | date: dd-MM-yyyy}}" formControlName="data" displayFormat="DD MM YY" placeholder="Select Date"></ion-datetime>
+    </ion-item>
+    <h6 *ngIf="errorData" class="error"> {{msgData}}</h6>
+    <ion-button type="submit" shape="round"  strong><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button>
+  </form>
+</ion-content>

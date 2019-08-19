@@ -1,0 +1,39 @@
+// App Styles
+// ----------------------------------------------------------------------------
+// Put style rules here that you want to apply to the entire application. These 
+// styles are for the entire app and not just one component. Additionally, this 
+// file can hold Sass mixins, functions, and placeholder classes to be imported 
+// and used throughout the application.
+table#tbl{
+    width: 100%;
+}
+table#tbl, th#RowTitleTable, td#RowDataTable {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+#danger{
+    color: red; 
+}
+p{
+    text-align: justify;
+}
+td#dados{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+div#capitulo{
+    border-bottom: 1px solid black;
+    border-collapse: collapse;
+}
+#titulo{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: whitesmoke;
+    text-align: center;
+  }
+#subipca{
+    text-decoration: underline;
+    color: red;
+}
+#vrde{
+    color: rgba(0,137,85,1)
+}

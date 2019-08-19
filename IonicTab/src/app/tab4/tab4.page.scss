@@ -1,0 +1,18 @@
+.form{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.2em;
+    font-weight: bold
+}
+ion-title{
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: bolder;
+    background-color: rgba(0, 119, 255, 0.514);
+    color: whitesmoke;
+}
+
+ion-button{
+    --background-hover: red;//teste da propriedade css... sem eficiência pra mobile
+    --box-shadow: black;
+    --transition: 1s;
+}

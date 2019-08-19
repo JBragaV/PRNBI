@@ -1,0 +1,278 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Seção 1: Aeronave e Sistemas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<div id="capitulo">
+  <h3>1.1 Generalidades</h3>
+  <p>Fabricado pela Aeronautical Industry Piper Arcraft (PA-34), a aeronave Seneca I é um bimotor de asa baixa, estrutura 
+    inteiramente metálica e trem de pouso de pouso do tipo retrátil.</p>
+  <p>Possui acomodalção para 6 ocupantes e é utilizada para instrução priária de voo.</p>
+  <p>Homologado para voos <strong><a href="tabs/tab2">VFR</a></strong> e <strong><a>IFR</a></strong> diurno e noturno.</p>
+</div>  
+  <h3>1-2 Dimensões</h3>
+  <table id="tbl">
+    <tr>
+      <th *ngFor="let snc of dimensoes" id="RowTitleTable">{{snc}}</th>
+    </tr>
+    <tr>
+      <td *ngFor="let cpt of comprimentos" id="RowDataTable">{{cpt}}</td>
+    </tr>
+  </table>
+  <ion-img src="../assets/seneca/dimensoes.jpg"></ion-img>
+  <h3>1-3 Grupo Moto Propulsor</h3>
+  <p>Equipado com 2 motores contra rotativo, onde cada motor possui 4 cilindros opostos horizontalmente, transmissão direta,
+     refrigeração a ar e injeção direta de combustível.</p>
+     <table id="tbl">
+        <tr>
+         <th colspan="2">Dados</th>
+        </tr>
+        <tr >
+          <td id="RowDataTable">Fabricante do motor</td>
+          <td id="RowDataTable">Lycoming</td>
+        </tr>
+        <tr >
+         <td id="RowDataTable">Modelo Direito</td>
+         <td id="RowDataTable">IO-360-C1E6</td>
+        </tr>
+        <tr >
+         <td id="RowDataTable">Modelo Esquerdo</td>
+         <td id="RowDataTable">LIO-360-C1E6</td>
+        </tr>
+        <tr >
+          <td id="RowDataTable">Potência máxima</td>
+          <td id="RowDataTable">200 hp</td>
+        </tr>
+        <tr >
+          <td id="RowDataTable">Rotação máxima</td>
+          <td id="RowDataTable">2700 rpm</td>
+        </tr>
+        <tr >
+          <td id="RowDataTable">Marca e modelo da hélice</td>
+          <td id="RowDataTable">Hartzell/7666A-2 ou F7666A-2</td>
+        </tr>
+      </table>
+  <p>Os motores são contra rotativos, o esquerdo gira no sentrido hãrio e o dureito no
+    nos sentido anti-horário, <strong id="danger">eliminando o motor criítico</strong>.</p>
+  <ion-img src="../assets/seneca/contra_rotativo.jpg"></ion-img>
+  <p>AS hélices são bipás, tipo harzell de velocidade constante possuindo sistema de embandeiramento total.
+    O governador hidráulico-pneumático, atua através de pressão do óleo para comandar a hélice para maior RPM ou desembandeirar,
+    enquanto a pressão do nutrigênio comanda a hélice para menor RPM e para embandeirar. O sistema conta com uma trava 
+    anti enbandeiramento que não permite que a hélice seja enbanderada <strong id="danger">abaixo de 800 RPM</strong>.</p>
+  <p>A pressão de admissão do motro, o controle da hélice e o controle do fluxo de combustível são controlada por seis manetes
+    localizadas no console central da aeronave.</p>
+  <ion-img src="../assets/seneca/manetes_foto.jpg" alt="Aqui vai a foto das manetes da página 8"></ion-img>
+  <ion-img src="../assets/seneca/manetes_desenho.jpg" alt="Aqui vai a foto das mantes da página 10"></ion-img>
+  <p>Para aumentra a eficiência aerodinâmica e térmica, os motrores são equipados com <strong>COWL FLAPS</strong>, que são 
+  entradas de ar localizadasna parte de baixo da nacele de cada motor, que podem ser operados para resfirar ou manter o calor dos 
+  cilindros quando necessário. O controle dos COWL FLAPS está localizado no controle central da aeronave e conta com três posições 
+  que são ABERTO/INTERMEDIARIO/FECHADO. O COWL FLAP deve ser sempre aberto para evitar que a temperatura da cabeça do cilindro 
+  ultrapasse <strong id="danger">475°F</strong> e a temperaturado óleo ultrapasse <strong id="danger">245°F</strong>.</p>
+  <ion-img src="../assets/seneca/cowlflap_alavanca.jpg" alt="cowl flap e manete cowl flap"></ion-img>
+  <ion-img src="../assets/seneca/cowl.jpg" alt="cowl flap página 13"></ion-img>
+  <p>Além de contar com a entrada normal de ar, o Seneca é equipado com uma entrada alternativa de ar, onde o ar passa direto 
+    para o motor não sofrendo <strong id="danger">filtragem</strong>. O direcionamento do ar é controlado por uma alavanca acima dos COWL FLAPS.</p>
+  <ion-img src="../assets/seneca/alavancaAlternada.jpg" alt="manete ar alternado"></ion-img>
+  <h5>Sistema de lubrificação</h5>
+  <p>Existe em cada motor, uma bomba mecânica com engrenagens e um reservatório que contstituem o sestema de lubrificação do tipo
+    mista. O reservatório de óleo possui uma vareta indicadora.</p>
+  <ion-img src="../assets/seneca/carenagem_motor.jpg" alt="fotos do motor"></ion-img>
+  <p>O nível dw óleo deve ser checado sempre no pré voo e deve estar entre 6 e 7 quartos de galão.</p>
+  <p>Especificação do óleo lubrificante: SAE 50</p>
+  <p>A padronização para os níveis de óleo são:</p>
+  <table>
+  <tr >
+      <td id="RowDataTable">Motor Frio</td>
+      <td id="RowDataTable">7 qts de galão</td>
+    </tr>
+    <tr >
+     <td id="RowDataTable">Motor Quente</td>
+     <td id="RowDataTable">6,5 qts de galão</td>
+    </tr>
+    <small><strong>Capacidade total = 7,57 litros/ 8 US quarts</strong></small>
+  </table>
+  <h3>Comandos de voo</h3>
+  <p>O Seneca possui dois manches convencionais e 2 pares de pedais que operam as superfícies de
+      controle primárias de voo. O estab-profundor e o leme de direção, possuem compensadores para diminuir
+      os esforços do piloto. Todas as superfícies de comando funcionam através de cabos e hastes.</p>
+  <ion-img src="../assets/seneca/painel.jpg" alt="painel"></ion-img>
+  <h5>Aileron</h5>
+  <p>O manche comanda mecanicamente, por meio de cabos e roldanas, o movimento dos ailerons de
+      BANCAGEM ou ROLAGEM que são do tipo diferenciais.</p>
+  <ion-img src="../assets/seneca/aileron.jpg" alt="aileron"></ion-img>
+  <h5>Profundor</h5>
+  <p>O movimento do manche, para frente PICAR e para trás CABRAR, comanda mecanicamente o
+      profundor por meio de cabos de aço e roldanas. O estab-profundor, que é do tipo inteiramente móvel, possui
+      um compensador montado no bordo de fuga</p>
+  <ion-img src="../assets/seneca/profundor.jpg" alt="profundor"></ion-img>
+  <h5>Leme</h5>
+  <p>O comando e guinada é comandado através do acionamento dos pedais na sua parte de baixo.</p>
+  <h5>Flaps</h5>
+  <p>Os Flaps são comandados por uma alavanca do lado direito do piloto próximo aos compensadores, possuindo três posições:
+    <strong>10 graus</strong>, <strong>25 graus</strong> e <strong>40 graus</strong></p>
+  <ion-img src="../assets/seneca/flap.jpg" alt="flapsInt"></ion-img>
+  <ion-img src="../assets/seneca/flap2.jpg" alt="flapsExt"></ion-img>
+  <h5>compensador</h5>
+    <p>Um volante compensador comanda mecanicamente, por meio de cabos e rodlanas, o compensador do profundor.</p>
+    <p>o volante compensador levado a frente faz o avião picar, isto é, move o compensador para cima. Lebvando para trás, faz com que este se mova 
+      para baixo, fazendo a aeronave cabrar.</p>
+    <p>Outro volante comanda mecanucamente, por meio de cabos e roldanas, o leme direcional. Levando para a esquerda, alivia a guinada para a direita 
+      e levando para a direita, alivia a guinada para a esquerda.</p>
+  <ion-img src="../assets/seneca/volanteCompensador.jpg" alt="Compensador"></ion-img>  
+  <h3>Sistema de combustível</h3>
+  <!--Colocar um link para um modal onde ira ter o diagrama do sistema de combustível-->
+  <p>O sistema de combustível compõe-se de 2 tanques de AVGAS  interligados em cada asa. Os tanques são ventilados individualmente através
+    de tubos de ventilação (respiros).
+  </p>
+  <p>Cada tanque de combustível possui um dreno no canto inferior dianteiro e um filtro de combustível fixado na parte infirior traseira da carenagem de Cadamotor entre 
+    o motor  e o nariz da aeronave.
+  </p>
+  <p>Existem ainda um dreno na linha de combustível da "X-FEED" na parte de baixo da aeronave próximo a raíz da asa direita. Seu acionamento deve ser feito
+    através de uma alavanca situada no interior da aeronave logo abaixo atrás do copiloto.
+  </p>
+  <p>Os tanques e os filtros devem ser drenados antes de cada voo e a linha de combustível, no primeiro voo do dia. Em operação normal, o motor 
+    é alimentado pelo tanque da respectiva asa.
+  </p>
+  <ion-img src="../assets/seneca/drenos.jpg" alt="Drenos de combustível"></ion-img>
+  <h5>Operação do sistema</h5>
+  <p>A alimentação de combustível do motor é feita por uma bomba por ele mesmo acionada.</p>
+  <p>A bomba elétrica de cobustível serve como acessório de apoio.</p>
+  <p>Esta bomba deve ser ligada durante as operaçãos de pouso, decolagem e em operações anormais e emergência.</p>
+  <ion-img src="../assets/seneca/painel_esquerdo.jpg" alt="Painel esquerdo"></ion-img>
+  <h5>Válvula seletora de combustível</h5>
+  <p>As valavulas seletoras dos tanques de combustível estão localizadas entre os assentos dianteiros e possuem 3 posições: ON, OFF e X-FEED.</p>
+  <p>A ponta da alavanca indica a poisção que a mesma se encontra. Uma alavanca está selecionada para o motor esquerdo e a outra selecionada para o 
+    motor direito. A posição "X-FEED"(Cross Feed) é utilizada para cruzar a alimentação de combustível nos motores no caso de uma pane de monomotor 
+    e ou para aumentar o alcance da aeronave.
+  </p>
+  <p>Colcoando a seletora do manotr esquerdo em X-FEED, este motor será alimentado pelo tanque do motor direito. Colcoando a seletora do motor direito na 
+    posição X-FEED, este será alimentado pelo tanque da asa esquerda.<a href="" >(vide esquema sistema de cobustível)</a>. É proibida operar com ambas as alavancas 
+    na posição X-FEED. 
+  </p>
+  <ion-button (click)="popOver()">Sistema de combustível</ion-button>
+  <ion-img src="../assets/seneca/seletora.jpg" alt="valvula_seletora"></ion-img>
+  <h5>Capacidade dos tanques</h5>
+  <table id="tbl">
+      <caption>PA-34</caption>
+      <tr >
+        <td id="RowDataTable">Tanque esquerdo</td>
+        <td id="RowDataTable">185,22 litros</td>
+        <td id="RowDataTable">133,36 Kg</td>
+      </tr>
+      <tr >
+       <td id="RowDataTable">Taque Direito</td>
+       <td id="RowDataTable">185,22 litros</td>
+       <td id="RowDataTable">133,36 Kg</td>
+      </tr>
+      <tr >
+       <td id="RowDataTable">Total</td>
+       <td id="RowDataTable">370,44 litros</td>
+       <td id="RowDataTable">266,72 kg</td>
+      </tr>
+      <tr >
+        <td id="dados" colspan="3">Consumo médio horário: 42l/h (cada motor)</td>
+      </tr>
+      <tr >
+        <td id="dados" colspan="3">Autonomia arpoximada: 04 horas e 30 minutos</td>
+      </tr>
+    </table>
+    <p>Combustível não utilizavel 18,9 litros/ 13,06 kg (distribuidos em cada seção de tanque).</p>
+    <small><strong>1 litro de AVGAS = 0,72 kg</strong></small>
+    <h5>Indicadores da quantidade de combustível</h5>
+    <p>Os tanques possuem liquidômetro que undicam a quantidade de combustível nos tanques, porém realize sempre os cálculos de autonomia 
+      e façam a verificação e medição do nível de combustível pela régua.
+    </p>
+    <ion-img src="../assets/seneca/indicador_quantidade_fuel.jpg" alt="indicadores de combustível"></ion-img>
+    <h5>Consumo e autonomia</h5>
+    <p>Deve-se trabalhar a mistura no "FUEL FLOW", por questões de refrigeração do motor e melhor consumo / autonomia.</p>
+    <p>Voo ascendente: 14 galões</p>
+    <p>Voo nivelado: 11 galões (acima de 5000 pés)</p>
+    <ion-img src="../assets/seneca/fuel_flow.jpg" alt="instrumento fuel flow"></ion-img>
+    <h5>Sistema de trem de pouso</h5>
+    <p>O trem de pouso tricilco é do do tipo retrátil, acionado por uma bomba elétrica reversível, que comanda o fluido hidráulico responsável pelo 
+      recolhimento e extensão do trem de pouso.
+    </p>
+    <p>A bomba é acionada por uma alavanca seletora com as posições "UP" e "DOWN", levando cerca de <strong>7 segundos</strong> para recolher ou baixar.</p>
+    <p>Quando as luzes estão apagadas, significa que o trem de pouso está recolhido.</p>
+    <p>Existem ainda um espelho na carenagem do motor esquerdo onde podemos verificar se a bequilha está recolhida ou estendida.</p>
+    <ion-img src="../assets/seneca/alarme_espelho.jpg" alt="Alarme E o espelho"></ion-img>
+    <p>O trem de pouso não deve ser recolhido com uma velocidade superior a <strong>125 MPH</strong> e nem estendido a uma velocidade superior a <strong>150 MPH</strong>.</p>
+    <p>Três interruptores: Um de mantete de potência, um no flap e um no trem de pouso disparam a <strong> buzina de alarme do trem de pouso</strong> junto com as <strong> luzes 
+      vermelhas</strong> (<strong id="danger">GEAR-UNSAFE</strong>) quando:
+    </p>
+    <p id="danger">O trem de pouso estiver recolhido e a potência estiver reduzida a abaixo de 14 pol.</p>
+    <p id="danger">O trem de pouso estiver recolhido e o flap estiver ajustado na posição 25°</p>
+    <p>Tr~es interruptores: Um do amortecedor do trem, um do limitador de trem em cima e um da trava de trem baixado disparam as <strong> luzes vermelhas</strong>
+      (<strong id="danger">GEAR-UNSAFE</strong>) quando:
+    </p>
+    <p id="danger">A seletora estiver na posição "UP" com a aeronave em solo.</p>
+    <p id="danger">O trem de pouso não estiver travado em baixo e nem recolhido.</p>
+    <ion-img src="../assets/seneca/alavanca_trem_pouso.jpg" alt="Alavanca trem de pouso"></ion-img>
+    <p><strong>IPCA: </strong>As buzinas do trem de pouso e do alarme de STALL emitem um sinal contínuo e são diferenciados apenas pelo tom do sinal.</p>
+    <p>O trem do nariz possui um amortecedor de SHIME e é comandado em um ângilo de até 30° para cada lado, por meio de pedais do leme. Quando o trem é 
+      recolhido, este comando direcional é desacoplado com a finaliade de reduzir as forças do pedal do leme em voo.
+    </p>
+    <p>Os pneus do trem principal e o cubo possuem uma marcação vermelha. Nesta marcação, podemos ver se o pneu do trem principal não correu na roda.
+      Caso isso ocorra, pode acontecer um dano a válvula de ar.
+    </p>
+    <p>O trem principal possui uma pressão de <strong>50 psi</strong> enquanto o trem  do nariz possui uma pressão de <strong>31 psi</strong>.</p>
+    <ion-img src="../assets/seneca/trem_pouso.jpg" alt="Trem e suas pressões"></ion-img>
+    <h6>Falha no sistema de recolhimento ou extensão do trem pouso.</h6>
+    <ol>
+      <li>Em caso de falha da bomba elétrica que gera o fluxo hindráulico para estender ou recolher o trem de pouso, o piloto deverá recorrer a alavanca 
+        de emergência que libera o fluido hidráulico que mantem o trem recolhido, fazendo com que o trem desça livre.
+      </li>
+      <li>Em caso de vazamento hidráulico na linha do trem de pouso, a gravidade fará com que o trem seja estendido.</li>
+    </ol>
+    <p><strong>Cargas dinâmicas podem auxiliar ao trem a travar.</strong></p>
+    <h5>Amortecedor</h5>
+    <p>Os amortecedores do trem de pouso são do tipo óleo-Pneumático e possui um curso de 60 mm.</p>
+    <ion-img src="../assets/seneca/amortecedor.jpg" alt="amortecedor"></ion-img>
+    <h5>Sistema de Freios</h5>
+    <p>Os freios são operados hidraulicamente, cada um de forma independente, freando as rodas do trem principal. O sistema de freio é composto de 
+      cilindros mestres individuais, entretanto, todos os cilindros utilizam um único reservatório em comum.
+    </p>
+    <p>O sistema possui ainda 2 discos, um em cada roda. O piloto, ao pressionar o pedal, cumprime o óleo da tubulação fazendo atuar o psitão do alojamento 
+      comprimindo assim as pastilhas nos discos, freando a roda.
+    </p>
+    <p>
+      O reservátoriodo fluido de freio está localizado no bagageiro dianteiro devendo ter seu nível checado antes de todo voo.
+    </p>
+    <ion-img src="../assets/seneca/freio.jpg" alt="freio"></ion-img>
+    <h5>Sistema de pitot estático</h5>
+    <p>O sistema de pitot estático é composto por 1 tubo de pitot, localizado no intradorso da asa esquerda, o qual fornece pressão estática e pressão 
+      total ao velocimetro e por duas tomadas de pressão estática localizada na fuselagem do avião.
+    </p>
+    <p>
+      Existe ainda uma válvula de controle alternativo de tomada de pressão estática que serve também para drenar o sistema. Além da tomada estática 
+      existe um dreno exlusivo para o pito localizado do lado esquerdo do comandante.
+    </p>
+    <p id="danger">Em solo, a aeronave deve estar sempre com o tubo de pito encapado!!</p>
+    <ion-img src="../assets/seneca/tubo_pitot.jpg" alt="Tubo de pitot"></ion-img>
+    <h5>Sistema Elétrico</h5>
+    <p>Componentes:</p>
+    <ul>
+      <li>2 alternadores de 60A(1 em cada motor)</li>
+      <li>2 Reguladores de voltagem</li>
+      <li>1 Bateria de 12V (35A)</li>
+    </ul>
+    <small><strong>A bateria está localizada no nariz da aeronave podendo ser acessada pelo compartimento de bagagem dianteiro.
+    </strong></small>
+    <p>O sistema conta com um plug para conectar a fonte externa para auxiliar a partida e manutenção no solo, localizado do lado esquerdo do avião próximo 
+      do nariz.
+    </p>
+    <p>Os circutos brakers estão localizado do lado inferior direito do painel, próximo do avionics master.</p>
+    <ion-img src="../assets/seneca/painel_esquerdo2_desenho.jpg" alt="painel esquerdo"></ion-img>
+    <ion-img src="../assets/seneca/cbs.jpg" alt="cbs"></ion-img>
+    <h5>Instrumentos/Acessórios/Painel</h5>
+    <h6>Intrumentos do motor</h6>
+    <ion-img src="../assets/seneca/instrumento_motor.jpg" alt="intrumento motor"></ion-img>
+    <h6>Instrumentos de voo/Nav</h6>
+    <ion-img src="../assets/seneca/instrumento_voo_nav.jpg" alt="intrumentos voo/nav"></ion-img>
+    <h6>Iluminação</h6>
+    <ion-img src="../assets/seneca/luzes.jpg" alt="luzesExt"></ion-img>
+</ion-content>
+<ion-button size="large" slots="end" (click)="fecharMdl()">Fechar</ion-button>
+<!--Arrumar alguns detalhes de posisionamento.-->
