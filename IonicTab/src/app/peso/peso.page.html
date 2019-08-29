@@ -9,87 +9,91 @@
       <h1>Calculo de Autonomia</h1>
       <h6>Consumo horário: 42L/H</h6>
       <ion-grid>
+        <!--Linha do combustível da etapa-->
         <ion-row>
-          <ion-col size-md="4">
+          <ion-col>
             <ion-item>
-              <ion-range id="teste" min="0" max="4" step="1" snaps="true" pin="true" value="{ teste | lower: 0; upper: 4; }" color="secondary">
-                <ion-label slot="start">0</ion-label>
-                <ion-label slot="end">4</ion-label>
-              </ion-range>
+              <ion-label class="form" position="floating">Combustível Etapa (L)</ion-label>
+              <ion-input type="number" clear-input="true" (keyup)="etapa = $event.target.value" placeholder="Combustível para a etapa" id="etapa"></ion-input>
             </ion-item>
           </ion-col>
-          <ion-col size-md="8">
+          <ion-col>
             <ion-item>
-              <ion-label class="form" position="floating">Peso combustível Etapa</ion-label>
-              <ion-input type="number" clear-input="true" (keyup)="etapa = $event.target.value" placeholder="Digite o combustível previsto para a etapa" id="etapa"></ion-input>
+              <ion-label class="form" position="floating">Peso combustível Etapa (kg)</ion-label>
+              <ion-input type="number" clear-input="true" disabled [value]="etapaKg"  placeholder="Peso Combustível da etapa" id="etapa"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
       </ion-grid>
+      <!--Linha do combustível alternado-->
       <ion-grid>
         <ion-row>
           <ion-col>
             <ion-item>
                 <ion-label class="form" position="floating">Alternado (Litros)</ion-label>
-                <ion-input type="number" clear-input="true" (keyup)="alternado = $event.target.value"  placeholder="Digite o combustível previsto para a alternativa" ></ion-input>
+                <ion-input type="number" clear-input="true" (keyup)="alternado = $event.target.value"  placeholder="Combustível alternado" ></ion-input>
             </ion-item>
           </ion-col>
           <ion-col>
               <ion-item>
-                  <ion-label class="form" position="floating">Mínimo Requerido (Litros)</ion-label>
-                  <ion-input type="number" disabled [value] = "minReq" (keyup)="minRqd = $event.target.value"  placeholder="Mínimo requerido" ></ion-input>
+                  <ion-label class="form" position="floating">Alternado (Kg)</ion-label>
+                  <ion-input type="number" disabled [value] = "alternadoKg"  placeholder="Peso Combustível alternado" ></ion-input>
               </ion-item> 
           </ion-col>
         </ion-row>
       </ion-grid>
+      <!--Linha do combustível de reserva-->
       <ion-grid>
         <ion-row>
           <ion-col>
             <ion-item>
               <ion-label class="form" position="floating">Reserva (Litros)</ion-label>
-              <ion-input type="number" clear-input="true" (keyup)="reserva = $event.target.value" placeholder="Digite o combustível previsto para a reserva" ></ion-input>
+              <ion-input type="number" clear-input="true" (keyup)="reserva = $event.target.value" placeholder="Combustível para a reserva" ></ion-input>
             </ion-item>
           </ion-col>
           <ion-col>
             <ion-item>
-              <ion-label class="form" position="floating">Reserva (Litros)</ion-label>
-              <ion-input type="number" clear-input="true" (keyup)="reserva = $event.target.value" placeholder="Digite o combustível previsto para a reserva" ></ion-input>
+              <ion-label class="form" position="floating">Reserva (Kg)</ion-label>
+              <ion-input type="number" disabled clear-input="true" [value]="reservaKg" placeholder="Peso Combustível reserva" ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
       </ion-grid>
+      <!--Linha do combustível mínimo-->
       <ion-grid>
         <ion-row>
           <ion-col>
             <ion-item>
                 <ion-label class="form" position="floating">Mínimo Requerido (Litros)</ion-label>
-                <ion-input type="number" disabled [value] = "minReq" (keyup)="minRqd = $event.target.value"  placeholder="Mínimo requerido" ></ion-input>
+                <ion-input type="number" disabled  [value] = "minReq" placeholder="Mínimo requerido" ></ion-input>
             </ion-item> 
           </ion-col>
           <ion-col>
               <ion-item>
-                  <ion-label class="form" position="floating">Mínimo Requerido (Litros)</ion-label>
-                  <ion-input type="number" disabled [value] = "minReq" (keyup)="minRqd = $event.target.value"  placeholder="Mínimo requerido" ></ion-input>
+                  <ion-label class="form" position="floating">Mínimo Requerido (Kg)</ion-label>
+                  <ion-input type="number" disabled [value] = "combMin"  placeholder="Peso Mínimo requerido" ></ion-input>
               </ion-item>   
           </ion-col>
         </ion-row>
       </ion-grid>
+      <!--Linha do combustível adcional-->
       <ion-grid>
         <ion-row>
           <ion-col>
             <ion-item>
               <ion-label class="form" position="floating">Adicional (Litros)</ion-label>
-              <ion-input type="number" clear-input="true" (keyup)="adicional = $event.target.value" value="adicional"  placeholder="Digite o combustível adicional"></ion-input>
+              <ion-input type="number" clear-input="true" (keyup)="adicional = $event.target.value" value="adicional"  placeholder="Combustível adicional"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col>
               <ion-item>
-                  <ion-label class="form" position="floating">Mínimo Requerido (Litros)</ion-label>
-                  <ion-input type="number" disabled [value] = "minReq" (keyup)="minRqd = $event.target.value"  placeholder="Mínimo requerido" ></ion-input>
+                  <ion-label class="form" position="floating">Adicional (Kg)</ion-label>
+                  <ion-input type="number" disabled [value] = "adcionalKg"  placeholder="Peso Combsutível adicional" ></ion-input>
               </ion-item> 
           </ion-col>
         </ion-row>
       </ion-grid>
+      <!--Linha do combustível total a bordo-->
       <ion-grid>
         <ion-row>
           <ion-col>
@@ -100,14 +104,14 @@
           </ion-col>
           <ion-col>
               <ion-item>
-                  <ion-label class="form" position="floating">Mínimo Requerido (Litros)</ion-label>
-                  <ion-input type="number" disabled [value] = "minReq" (keyup)="minRqd = $event.target.value"  placeholder="Mínimo requerido" ></ion-input>
+                  <ion-label class="form" position="floating">Total a Bordo (Kg)</ion-label>
+                  <ion-input type="number" disabled [value] = "totBordKg"  placeholder="Peso combustível" ></ion-input>
               </ion-item> 
           </ion-col>
         </ion-row>
       </ion-grid>
       <span *ngIf="cobustivel" id="danger">Limite do combustivel é 370L</span>
-      <ion-button (click)="vml(etapa, alternado, reserva, adicional, teste)" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Calcular Combustível</ion-button>
+      <ion-button (click)="vml(etapa, alternado, reserva, adicional)" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Calcular Combustível</ion-button>
     </div>
     <div id="capitulo">
       <h1>Calculo de Peso de Decolagem</h1>
@@ -203,4 +207,15 @@
      
     </ion-col>
   </ion-row>
-</ion-grid>-->
+</ion-grid>
+ion-range===> depois tentar recoloar  
+<ion-item>
+              <ion-range id="teste" min="0" max="4" step="1" snaps="true" pin="true" value="{ teste | lower: 0; upper: 4; }" color="secondary">
+                <ion-label slot="start">0</ion-label>
+                <ion-label slot="end">4</ion-label>
+              </ion-range>
+            </ion-item>
+          </ion-col>
+
+-->
+

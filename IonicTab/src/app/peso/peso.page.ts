@@ -21,16 +21,24 @@ export class PesoPage implements OnInit {
   ok = false//
 
   arara = true //teste
-  
+
+  //Tabela de combustível
+  @Input() etapaKg//Peso do combustível da etapa
+  @Input() alternadoKg//Peso do combustível alternado
+  @Input() adcionalKg//peso combustível adicional
+  @Input() reservaKg//Peso combustível reserva
   @Input() minReq // Mínimo requerido
-  @Input() PesDispTot //Peso Disponível Total
-  @Input() combMin //Combustível mínimo
   @Input() totBord //Combustivel total a bordo
+  @Input() totBordKg//Peso Combusível total a bordo
+  //Tabela Peso
+  @Input() PesDispTot //Peso Disponível Total
   @Input() pesTripuPax //Peso total da tripulação e passageiros
+  @Input() combMin //Combustível mínimo
   @Input() combMinp //Payload Máximo
-  @Input() pesZerComb //Peso Zero Combustível atual
-  @Input() pesComb // Peso do combustível a bordo
+  //Tabela Balanceamento 
   @Input() pad //Peso Atual de decolagem
+  @Input() pesComb // Peso do combustível a bordo
+  @Input() pesZerComb //Peso Zero Combustível atual
   @Input() combEtap //Combustível queimado na etapa
   @Input() pap //Peso atual de pouso
   @Input() centrogravidade
@@ -47,13 +55,17 @@ export class PesoPage implements OnInit {
   //Valor = Peso máximo de decolagem, Valor2 = peso vazio básico, valor3 = combustível mínimo valor4 = peso tripulação e passageiros
   vml(pe: string, pa: string, pr: string, pAdc: string){
     try{
-      let teste = document.getElementById("teste")
       this.minReq = Number(pe.replace(",", "."))+Number(pa.replace(",", "."))+Number(pr.replace(",", "."))
-      console.log(teste)
       this.totBord = this.minReq + Number(pAdc.replace(",", "."))
+      //Converte litros em kg para o combustível mínimo
+      this.combMin = this.converteKg(this.minReq)
       
-      this.combMin = (this.minReq * 0.72).toFixed(2)
-      console.log(teste)
+      this.etapaKg = this.converteKg(pe)
+      this.alternadoKg = this.converteKg(pa)
+      this.reservaKg = this.converteKg(pr)
+      this.adcionalKg = this.converteKg(pAdc)
+      this.totBordKg = this.converteKg(this.totBord)
+ 
       if(Number(this.totBord > 370)){
         this.erroFuel = true
         this.cobustivel = true
@@ -65,8 +77,16 @@ export class PesoPage implements OnInit {
       }
     }catch(e){
       alert("Você deixou algum campo em branco!!!")
+      console.log(e)
     }
   }
+
+  //Função que converte litros em kg
+  converteKg(litros: string){
+    let kg = (Number(litros) * 0.72).toFixed(2)
+    return kg
+  }
+
 
   //Calculo do Peso de decolagem
   conc(valor: string, valor2: string, valor3: string, valor4: string){
