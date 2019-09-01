@@ -26,13 +26,6 @@ export class FormPage implements OnInit {
   errorPass = false;
   erroData = false;
 
-  vlr: Date = new Date();
-  dia = this.vlr.getDate().toString()
-  mes = this.vlr.getMonth().toString()
-  ano = this.vlr.getFullYear().toString()
-  completo = `${this.dia}/${this.mes}/${this.ano}`
-  
-  
   constructor(private alertController: AlertController,
               private formBilder: FormBuilder,
               private profissionalService: ProfissionalService,
@@ -95,19 +88,7 @@ export class FormPage implements OnInit {
       this.add();
     }
   }
-  async apareceae(){
-
-    console.log(this.completo)
-    //let stDt = this.vlr.toISOString()
-    const alert = await this.alertController.create({
-      header: "Alerta",
-      subHeader: "Sub título da bagaça",
-      message: this.completo,
-      buttons: ["OK"]
-    })
-    alert.present();
-  }
-
+  
   pegar(pro: string){
     console.log(pro)
     const profBD = this.profissionalService.getProf()

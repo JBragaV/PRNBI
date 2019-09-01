@@ -20,7 +20,7 @@ export class EnginePage implements OnInit {
   async popOver(){
     const pop = await this.popoverController.create({
       component: FotoFuelPage,
-
+      cssClass: "pop-over-style"
     })
     return pop.present();
   }

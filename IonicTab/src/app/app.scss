@@ -37,3 +37,9 @@ div#capitulo{
 #vrde{
     color: rgba(0,137,85,1)
 }
+.pop-over-style{
+    .popover-content{
+        --width:90%!important;
+        --height:auto!important;
+    }
+}

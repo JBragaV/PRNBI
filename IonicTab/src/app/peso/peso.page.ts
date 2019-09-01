@@ -19,15 +19,16 @@ export class PesoPage implements OnInit {
   cGd = false//
   cGp = false//
   ok = false//
-
+  
   arara = true //teste
-
+  
   //Tabela de combustível
-  @Input() etapaKg//Peso do combustível da etapa
-  @Input() alternadoKg//Peso do combustível alternado
-  @Input() adcionalKg//peso combustível adicional
-  @Input() reservaKg//Peso combustível reserva
+  
+ 
+  
   @Input() minReq // Mínimo requerido
+  @Input() minReqKg
+
   @Input() totBord //Combustivel total a bordo
   @Input() totBordKg//Peso Combusível total a bordo
   //Tabela Peso
@@ -44,29 +45,87 @@ export class PesoPage implements OnInit {
   @Input() centrogravidade
   //pesoMaior = false
   constructor(private formBiulder: FormBuilder) { }
-
+  
   ngOnInit() {
     this.formulario = this.formBiulder.group({
-
+      
     })
   }
 
+  //Variaveis para o calculo do combustível da Etapa
+  etapa = 0
+  etapaMinuto = 0
+  etapaKg = 0
+  etapaKgMinuto = 0
+
+  horaEtapa(event){
+    this.etapa = Number((event.detail.value * 41.16 * 2))
+    this.etapaKg = Number((this.etapa)*0.72)
+  }
+
+  minutoEtapa(event){
+    this.etapaMinuto = Number(((event.detail.value * 41.16)/60)*2)
+    this.etapaKgMinuto = Number((this.etapaMinuto)*0.72)
+  }
+
+  //Variaveis para o calculo do combustível alternado
+  Alternado = 0
+  AlternadoMinuto = 0
+  alternadoKg = 0
+  AlternadoKgMinuto = 0
+
+  horaAlternado(event){
+    this.Alternado = Number((event.detail.value * 41.16 * 2))
+    this.alternadoKg = Number((this.Alternado)*0.72)
+    console.log(this.alternadoKg)
+  }
+
+  minutoAlternado(event){
+    this.AlternadoMinuto = Number(((event.detail.value * 41.16)/60)*2)
+    this.AlternadoKgMinuto = Number((this.AlternadoMinuto)*0.72)
+  }
+  //Variaveis para o calculo do combustível de Reserva
+  reserva = 0
+  reservaMinuto = 0
+  reservaKg = 0
+  reservaKgMinuto = 0
+
+  horaReserva(event){
+    console.log(event)
+    this.reserva = Number((event.detail.value * 41.16 * 2))
+    this.reservaKg = Number((this.reserva)*0.72)
+  }
+
+  minutoReserva(event){
+    this.reservaMinuto = Number(((event.detail.value * 41.16)/60)*2)
+    this.reservaKgMinuto = Number((this.reservaMinuto)*0.72)
+  }
+
+  adicional = 0 
+  adicionalMinuto = 0
+  adicionalKg = 0
+  adicionalKgMinuto = 0
+
+  horaAdcional(event){
+    this.adicional = Number(((event.detail.value * 41.16 * 2)))
+    this.adicionalKg = Number(((this.adicional)*0.72))
+  }
+
+  minutoAdcional(event){
+    this.adicionalMinuto = Number((((event.detail.value * 41.16)/60)*2))
+    this.adicionalKgMinuto = Number(((this.adicionalMinuto)*0.72))
+  }
   //Calculo de Autonomia
   //Valor = Peso máximo de decolagem, Valor2 = peso vazio básico, valor3 = combustível mínimo valor4 = peso tripulação e passageiros
-  vml(pe: string, pa: string, pr: string, pAdc: string){
+  vml(){
     try{
-      this.minReq = Number(pe.replace(",", "."))+Number(pa.replace(",", "."))+Number(pr.replace(",", "."))
-      this.totBord = this.minReq + Number(pAdc.replace(",", "."))
-      //Converte litros em kg para o combustível mínimo
-      this.combMin = this.converteKg(this.minReq)
+      this.minReq = (this.etapa + this.etapaMinuto + this.Alternado + this.AlternadoMinuto + this.reserva + this.reservaMinuto)
+      this.minReqKg = (this.etapaKg + this.etapaKgMinuto + this.alternadoKg +this.AlternadoKgMinuto + this.reservaKg + this.reservaKgMinuto)
       
-      this.etapaKg = this.converteKg(pe)
-      this.alternadoKg = this.converteKg(pa)
-      this.reservaKg = this.converteKg(pr)
-      this.adcionalKg = this.converteKg(pAdc)
-      this.totBordKg = this.converteKg(this.totBord)
+      this.totBord = (this.minReq + this.adicional + this.adicionalMinuto)
+      this.totBordKg = this.minReqKg + this.adicionalKg + this.adicionalKgMinuto
  
-      if(Number(this.totBord > 370)){
+      if(Number(this.totBord > 370.44)){
         this.erroFuel = true
         this.cobustivel = true
         document.getElementById("totalBordo").style.color = "red"
@@ -115,7 +174,7 @@ export class PesoPage implements OnInit {
 
     this.pad = (Number(this.pesZerComb) + Number(this.pesComb)).toFixed(2)
     
-    this.combEtap = (Number(etapa.replace(",", ".")) * 0.72).toFixed(2)
+    this.combEtap = (Number(etapa) * 0.72).toFixed(2)
     
     this.pap = (this.pad - this.combEtap).toFixed(2)
     
@@ -160,5 +219,6 @@ export class PesoPage implements OnInit {
     
   }
 
-  
+
+
 }
