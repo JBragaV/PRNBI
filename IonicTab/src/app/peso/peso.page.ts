@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-peso',
@@ -8,26 +8,21 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class PesoPage implements OnInit {
 
-  formulario: FormGroup
-  
-  erroFuel = false //
-  erroPeso = false//
+  //Variaveis de erro.
 
-  payLoad = false //
-  cobustivel = false //
-  pesoMaximoPouso = false//
-  cGd = false//
-  cGp = false//
+  erroFuel = false // Erro combustível fora do padrão
+  erroPeso = false// Habilitador do botão de calcular balanceamento
+
+  cobustivel = false // Erro de excesso de combustível --> Depois do calculo de combustível
+  payLoad = false // Erro de aeronave sobre carregada --> Depois do calculo de peso
+  pesoMaximoPouso = false// Erro de peso maximo de pouso excedido --> Final da página
+  cGd = false// Erro Centro de gravidade fora do limite para decolagem --> Final da Página
+  cGp = false// Erro Centro de gravidade fora do limite para pouso ---> Final da página
   ok = false//
   
-  arara = true //teste
-  
+ 
   //Tabela de combustível
   
- 
-  
-  @Input() minReq // Mínimo requerido
-  @Input() minReqKg
 
   @Input() totBord //Combustivel total a bordo
   @Input() totBordKg//Peso Combusível total a bordo
@@ -44,15 +39,19 @@ export class PesoPage implements OnInit {
   @Input() pap //Peso atual de pouso
   @Input() centrogravidade
   //pesoMaior = false
-  constructor(private formBiulder: FormBuilder) { }
+  constructor() { }
   
   ngOnInit() {
-    this.formulario = this.formBiulder.group({
-      
-    })
+
   }
 
-  //Variaveis para o calculo do combustível da Etapa
+  //Variaveis para o calculo do combustível
+  //Variáveis do minimo requerido em litros e em quilos
+  @Input() minReq // Mínimo requerido
+  @Input() minReqKg
+  //Fim
+
+  //Variaveis do primeiro campo, Combustível para a etapa
   etapa = 0
   etapaMinuto = 0
   etapaKg = 0
@@ -67,8 +66,9 @@ export class PesoPage implements OnInit {
     this.etapaMinuto = Number(((event.detail.value * 41.16)/60)*2)
     this.etapaKgMinuto = Number((this.etapaMinuto)*0.72)
   }
+  //Fim da etapa
 
-  //Variaveis para o calculo do combustível alternado
+  //Variaveis do segundo campo, combustível alternado
   Alternado = 0
   AlternadoMinuto = 0
   alternadoKg = 0
@@ -84,7 +84,9 @@ export class PesoPage implements OnInit {
     this.AlternadoMinuto = Number(((event.detail.value * 41.16)/60)*2)
     this.AlternadoKgMinuto = Number((this.AlternadoMinuto)*0.72)
   }
-  //Variaveis para o calculo do combustível de Reserva
+  //Fim do alternado
+
+  //Variaveis do terceiro campo, combustível de Reserva
   reserva = 0
   reservaMinuto = 0
   reservaKg = 0
@@ -100,23 +102,29 @@ export class PesoPage implements OnInit {
     this.reservaMinuto = Number(((event.detail.value * 41.16)/60)*2)
     this.reservaKgMinuto = Number((this.reservaMinuto)*0.72)
   }
+  //Fim da Reserva
 
+  //Variáveis do quinto campo, Combustível Adcional
   adicional = 0 
   adicionalMinuto = 0
   adicionalKg = 0
   adicionalKgMinuto = 0
-
+  hAdcional = 0
+  mAdcional = 0
   horaAdcional(event){
+    this.hAdcional = Number(event.detail.value)
     this.adicional = Number(((event.detail.value * 41.16 * 2)))
     this.adicionalKg = Number(((this.adicional)*0.72))
   }
-
+  
   minutoAdcional(event){
+    this.mAdcional = Number(event.detail.value)
     this.adicionalMinuto = Number((((event.detail.value * 41.16)/60)*2))
     this.adicionalKgMinuto = Number(((this.adicionalMinuto)*0.72))
   }
-  //Calculo de Autonomia
-  //Valor = Peso máximo de decolagem, Valor2 = peso vazio básico, valor3 = combustível mínimo valor4 = peso tripulação e passageiros
+  //Fim do adcional
+
+  //Calculo de Autonomia, função que soma e diz se a aeronave está dento dos limites do tanque de combustível
   vml(){
     try{
       this.minReq = (this.etapa + this.etapaMinuto + this.Alternado + this.AlternadoMinuto + this.reserva + this.reservaMinuto)
@@ -139,21 +147,13 @@ export class PesoPage implements OnInit {
       console.log(e)
     }
   }
-
-  //Função que converte litros em kg
-  converteKg(litros: string){
-    let kg = (Number(litros) * 0.72).toFixed(2)
-    return kg
-  }
-
+  //Fim da função de combustível
 
   //Calculo do Peso de decolagem
-  conc(valor: string, valor2: string, valor3: string, valor4: string){
-    let teAcalma = Number(valor.replace(",", ".")) - Number(valor2.replace(",", "."))
+  conc(pesoMaximoDecolagem: string, pesoVazioBasico: string, pesTripuPax: string){
+    this.PesDispTot = (Number(pesoMaximoDecolagem.replace(",", ".")) - Number(pesoVazioBasico.replace(",", "."))).toFixed(2)
     
-    this.PesDispTot = teAcalma.toFixed(2)
-    
-    this.combMinp = (teAcalma - Number(valor3.replace(",", ".")) - Number(valor4.replace(",", "."))).toFixed(2)
+    this.combMinp = (this.PesDispTot - this.minReqKg) - Number(pesTripuPax.replace(",", "."))
     
     if(Number(this.combMinp) < 0 ){
       this.payLoad = true
@@ -190,12 +190,10 @@ export class PesoPage implements OnInit {
     this.centrogravidade = cgd.toString().replace(".", ",")
     //Centro de gravidade no pouso
     
-    let numPouso =((Number(pbv.replace(",", "."))*2.252) + (Number(pd.replace(",", "."))*2.172) + (Number(pc.replace(",", "."))*3)
-    + (Number(pt.replace(",", "."))*3.955) + (Number(bd.replace(",", "."))*0.572) + (Number(btr.replace(",", "."))*4.539) 
-    + (Number(this.pesComb.replace(",", "."))*2.38) - (Number(this.combEtap)*2.38))
+    let numPouso = numDep - (Number(this.combEtap)*2.38)
     
     let cgp = (numPouso/this.pap).toFixed(3)
-    //console.log(`O centro de gravidade na: Peso de decolagem é ${cgd} e no pouso é ${cgp}`)  
+    console.log(`O centro de gravidade na: Peso de decolagem é ${cgd} e no pouso é ${cgp}`)  
     //Iniciar as "analises dos valores. Centro de gravidade e peso"
 
     if(this.pap > 1814){
@@ -214,11 +212,11 @@ export class PesoPage implements OnInit {
     }
   }
 
-  //A implementar
-  limpa(){
-    
+  dataHoje(){
+    let data = new Date()
+    let dia = data.getDate()
+    let mes = data.getMonth()
+    let ano = data.getFullYear()
+    return [dia, mes, ano].join("/")
   }
-
-
-
 }
