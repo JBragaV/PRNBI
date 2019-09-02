@@ -19,7 +19,9 @@ export class PesoPage implements OnInit {
   cGd = false// Erro Centro de gravidade fora do limite para decolagem --> Final da Página
   cGp = false// Erro Centro de gravidade fora do limite para pouso ---> Final da página
   ok = false//
-  
+
+  totalAutonomia: number = 0;
+  temporal = 0;
  
   //Tabela de combustível
   
@@ -58,13 +60,18 @@ export class PesoPage implements OnInit {
   etapaKgMinuto = 0
 
   horaEtapa(event){
-    this.etapa = Number((event.detail.value * 41.16 * 2))
-    this.etapaKg = Number((this.etapa)*0.72)
+    this.etapa = Number((event.detail.value * 41.16 * 2).toFixed(2))
+    this.etapaKg = Number(((this.etapa)*0.72).toFixed(2))
+    if(event.detail.value > this.temporal) {
+      ++this.totalAutonomia
+    } else
+      --this.totalAutonomia
+    this.temporal = event.detail.value
   }
 
   minutoEtapa(event){
-    this.etapaMinuto = Number(((event.detail.value * 41.16)/60)*2)
-    this.etapaKgMinuto = Number((this.etapaMinuto)*0.72)
+    this.etapaMinuto = Number((((event.detail.value * 41.16)/60)*2).toFixed(2))
+    this.etapaKgMinuto = Number(((this.etapaMinuto)*0.72).toFixed(2))
   }
   //Fim da etapa
 
@@ -77,7 +84,11 @@ export class PesoPage implements OnInit {
   horaAlternado(event){
     this.Alternado = Number((event.detail.value * 41.16 * 2))
     this.alternadoKg = Number((this.Alternado)*0.72)
-    console.log(this.alternadoKg)
+    if(event.detail.value > this.temporal) {
+      ++this.totalAutonomia
+    } else
+      --this.totalAutonomia
+    this.temporal = event.detail.value
   }
 
   minutoAlternado(event){
@@ -93,9 +104,13 @@ export class PesoPage implements OnInit {
   reservaKgMinuto = 0
 
   horaReserva(event){
-    console.log(event)
     this.reserva = Number((event.detail.value * 41.16 * 2))
     this.reservaKg = Number((this.reserva)*0.72)
+    if(event.detail.value > this.temporal) {
+      ++this.totalAutonomia
+    } else
+      --this.totalAutonomia
+    this.temporal = event.detail.value
   }
 
   minutoReserva(event){
@@ -111,10 +126,18 @@ export class PesoPage implements OnInit {
   adicionalKgMinuto = 0
   hAdcional = 0
   mAdcional = 0
+
+  
+
   horaAdcional(event){
     this.hAdcional = Number(event.detail.value)
     this.adicional = Number(((event.detail.value * 41.16 * 2)))
     this.adicionalKg = Number(((this.adicional)*0.72))
+    if(event.detail.value > this.temporal) {
+      ++this.totalAutonomia
+    } else
+      --this.totalAutonomia
+    this.temporal = event.detail.value
   }
   
   minutoAdcional(event){
@@ -131,7 +154,7 @@ export class PesoPage implements OnInit {
       this.minReqKg = (this.etapaKg + this.etapaKgMinuto + this.alternadoKg +this.AlternadoKgMinuto + this.reservaKg + this.reservaKgMinuto)
       
       this.totBord = (this.minReq + this.adicional + this.adicionalMinuto)
-      this.totBordKg = this.minReqKg + this.adicionalKg + this.adicionalKgMinuto
+      this.totBordKg = (this.minReqKg + this.adicionalKg + this.adicionalKgMinuto)
  
       if(Number(this.totBord > 370.44)){
         this.erroFuel = true
@@ -217,6 +240,7 @@ export class PesoPage implements OnInit {
     let dia = data.getDate()
     let mes = data.getMonth()
     let ano = data.getFullYear()
-    return [dia, mes, ano].join("/")
+    let segundos = data.getSeconds()
+    return [dia, mes, ano, segundos].join("/")
   }
 }
