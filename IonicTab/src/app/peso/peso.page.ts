@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { calculos } from '../models/calculo.models';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CalculoService } from '../service/calculo.service';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -33,14 +34,37 @@ export class PesoPage implements OnInit {
   }
   
   constructor(private formBilder: FormBuilder,
-              private calculoService: CalculoService) { }
+              private calculoService: CalculoService,
+              private alertController: AlertController) { }
   add(){
     const novoCalculo = this.formulario.getRawValue() as calculos
     console.log(novoCalculo)
     this.calculoService.add(novoCalculo).subscribe(() => {
-      alert("Dados inseridos com suecesso!!!"),
-      error => console.log(error)
+      this.presentAlert(),
+      error => this.erroAlert()
     })
+  }
+
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Sucesso',
+      subHeader: 'Adicionado',
+      message: 'Os Dados foram adicionados com sucesso!!!',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  async erroAlert() {
+    const alert = await this.alertController.create({
+      header: 'Erro',
+      subHeader: 'Não foi adicionado',
+      message: "Erro ao adicionaar os dados no banco!!",
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
   //Variaveis de erro.
 
