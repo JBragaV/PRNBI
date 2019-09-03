@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { calculos } from '../models/calculo.models';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { CalculoService } from '../service/calculo.service';
 
 
 @Component({
@@ -7,7 +10,38 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./peso.page.scss'],
 })
 export class PesoPage implements OnInit {
-
+  
+  calculo: calculos[]
+  formulario: FormGroup 
+  
+  ngOnInit() {
+    this.formulario = this.formBilder.group({
+      autonomiaL: [this.totBord],
+      autonomiaK: [this.totBordKg],
+      payLoad: [this.combMinp],
+      ocupantesDianteiros: [""],
+      ocupantesCentrais: [""],
+      ocupantesTraseiros: [""],
+      bagageiroDianteiro: [""],
+      bagageiroTraseiro: [""],
+      pad: [this.pad],
+      pap: [this.pap],
+      cgd: [this.cgd],
+      cgp: [this.cgp],
+      data: [this.hoje]
+    })
+  }
+  
+  constructor(private formBilder: FormBuilder,
+              private calculoService: CalculoService) { }
+  add(){
+    const novoCalculo = this.formulario.getRawValue() as calculos
+    console.log(novoCalculo)
+    this.calculoService.add(novoCalculo).subscribe(() => {
+      alert("Dados inseridos com suecesso!!!"),
+      error => console.log(error)
+    })
+  }
   //Variaveis de erro.
 
   erroFuel = false // Erro combustível fora do padrão
@@ -40,12 +74,10 @@ export class PesoPage implements OnInit {
   @Input() combEtap //Combustível queimado na etapa
   @Input() pap //Peso atual de pouso
   @Input() centrogravidade
+  @Input() cgd//Centro de gravidade na decolagem, calculado
+  @Input() cgp//Centro de gravidade no pouso, calculado
   //pesoMaior = false
-  constructor() { }
   
-  ngOnInit() {
-
-  }
 
   //Variaveis para o calculo do combustível
   //Variáveis do minimo requerido em litros e em quilos
@@ -209,14 +241,14 @@ export class PesoPage implements OnInit {
     + (Number(pt.replace(",", "."))*3.955) + (Number(bd.replace(",", "."))*0.572) + (Number(btr.replace(",", "."))*4.539) 
     + (Number(this.pesComb.replace(",", ".")))*2.38)
     
-    let cgd = (numDep/this.pad).toFixed(3)
-    this.centrogravidade = cgd.toString().replace(".", ",")
+    this.cgd = (numDep/this.pad).toFixed(3)
+    this.centrogravidade = this.cgd.toString().replace(".", ",")
     //Centro de gravidade no pouso
     
     let numPouso = numDep - (Number(this.combEtap)*2.38)
     
-    let cgp = (numPouso/this.pap).toFixed(3)
-    console.log(`O centro de gravidade na: Peso de decolagem é ${cgd} e no pouso é ${cgp}`)  
+    this.cgp = (numPouso/this.pap).toFixed(3)
+    console.log(`O centro de gravidade na: Peso de decolagem é ${this.cgd} e no pouso é ${this.cgp}`)  
     //Iniciar as "analises dos valores. Centro de gravidade e peso"
 
     if(this.pap > 1814){
@@ -226,7 +258,7 @@ export class PesoPage implements OnInit {
       this.pesoMaximoPouso = false
       document.getElementById("pesPouso").style.color = "black"
     }
-    if(Number(cgd) > 2.402 || Number(cgd) < 2.049){
+    if(Number(this.cgd) > 2.402 || Number(this.cgd) < 2.049){
       this.cGd = true
       this.ok = false
     }else{
@@ -234,13 +266,13 @@ export class PesoPage implements OnInit {
         this.ok = true
     }
   }
-
   dataHoje(){
     let data = new Date()
     let dia = data.getDate()
     let mes = data.getMonth()
     let ano = data.getFullYear()
     let segundos = data.getSeconds()
-    return [dia, mes, ano, segundos].join("/")
+    return [dia, mes, ano].join("/")
   }
+  hoje = this.dataHoje()
 }

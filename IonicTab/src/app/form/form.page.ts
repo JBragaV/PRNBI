@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { ProfissionalService } from '../service/profissional.service';
 import { Router } from '@angular/router';
 import { profissional } from '../models/profissional.models';

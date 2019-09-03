@@ -1,0 +1,20 @@
+{
+  "historico": [
+    {
+      "autonomiaL": 329.28,
+      "autonomiaK": 237.0812,
+      "payLoad": 257.1892,
+      "ocupantesDianteiros": 100,
+      "ocupantesCentrais": 50,
+      "ocupantesTraseiros": 50,
+      "bagageiroDianteiro": 45,
+      "bagageiroTraseiro": 45,
+      "pad": 1797.08,
+      "pap": 1737.81,
+      "cgd": "2.348",
+      "cgp": "2.347",
+      "data": "2/8/2019",
+      "id": 1
+    }
+  ]
+}

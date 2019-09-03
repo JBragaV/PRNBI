@@ -4,14 +4,14 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding fullscreen>
-  <form >
-
+  <form [formGroup] = formulario (submit)="add()">
+    <!--div do calculo do combustível-->
     <div id="capitulo">
       <h1>Calculo de Autonomia</h1>
       <h6>Consumo horário: 42L/H</h6>
       <ion-grid>
         <!--Linha do combustível da etapa-->
-        <ion-label position="floating">Etapa</ion-label>
+        <ion-label position="floating" class="ion-text-center">Etapa</ion-label>
         <ion-row>
           <ion-col>
             <ion-item>
@@ -45,8 +45,8 @@
       </ion-grid>
       <!--Linha do combustível alternado-->
       <ion-grid>
-          <ion-label position="floating">Alternado</ion-label>
-          <ion-row>
+        <ion-label position="floating" class="ion-text-center">Alternado</ion-label>
+        <ion-row>
               <ion-col>
                 <ion-item>
                     <ion-label class="form" position="floating">Hora</ion-label>
@@ -79,7 +79,7 @@
       </ion-grid>
       <!--Linha do combustível de reserva-->
       <ion-grid>
-          <ion-label position="floating">Combustível Reserva</ion-label>
+        <ion-label position="floating" class="ion-text-center">Reserva</ion-label>
         <ion-row>
             <ion-col>
               <ion-item>
@@ -113,7 +113,7 @@
       </ion-grid>
       <!--Linha do combustível mínimo-->
       <ion-grid>
-          <ion-label position="floating">Mínimo requerido</ion-label>
+        <ion-label position="floating" class="ion-text-center">Mínimo Requerido</ion-label>
         <ion-row>
           <ion-col>
             <ion-item>
@@ -131,7 +131,7 @@
       </ion-grid>
       <!--Linha do combustível adcional-->
       <ion-grid>
-        <ion-label position="floating">Adicional</ion-label>
+        <ion-label position="floating" class="ion-text-center">Adicional</ion-label>
           <ion-row>
               <ion-col>
                 <ion-item>
@@ -170,7 +170,7 @@
           <ion-col>
             <ion-item>
               <ion-label class="form" position="floating">autonomia total</ion-label>
-              <ion-input type="number" disabled [value] = "totalAutonomia"  placeholder="autonomia total" ></ion-input>
+              <ion-input type="number"  disabled [value] = "totalAutonomia"  placeholder="autonomia total" ></ion-input>
             </ion-item>   
           </ion-col>
           <ion-col>
@@ -184,13 +184,13 @@
           <ion-col>
             <ion-item>
               <ion-label class="form" position="floating">Total a Bordo (Litros)</ion-label>
-              <ion-input type="number" [value]="totBord" disabled [value]="totBord" id="totalBordo" placeholder="Total a Bordo"></ion-input>
+              <ion-input type="number" [value]="totBord"  disabled formControlName="autonomiaL" id="totalBordo" placeholder="Total a Bordo"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col>
               <ion-item>
                   <ion-label class="form" position="floating">Total a Bordo (Kg)</ion-label>
-                  <ion-input type="number" disabled [value] = "totBordKg"  placeholder="Peso combustível" ></ion-input>
+                  <ion-input type="number" disabled [value] = "totBordKg" formControlName="autonomiaK" placeholder="Peso combustível" ></ion-input>
               </ion-item> 
           </ion-col>
         </ion-row> 
@@ -198,6 +198,7 @@
       <span *ngIf="cobustivel" id="danger">Limite do combustivel é 370,44L</span>
       <ion-button (click)="vml(alternado, reserva, adicional)" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Calcular Combustível</ion-button>
     </div>
+    <!--Div do calculo do peso-->
     <div id="capitulo">
       <h1>Calculo de Peso de Decolagem</h1>
     <ion-item>
@@ -222,11 +223,12 @@
     </ion-item>
     <ion-item>
       <ion-label class="form" position="floating">Payload máximo (kg)</ion-label>
-      <ion-input type="number" [value]="combMinp" disabled placeholder="Payload Máximo" id="payLoad" ></ion-input>
+      <ion-input type="number" [value]="combMinp" formControlName="payLoad" disabled placeholder="Payload Máximo" id="payLoad" ></ion-input>
       <span *ngIf="payLoad" id="danger">Peso fora do padrão</span>
     </ion-item>
     <ion-button [disabled] = "erroFuel" (click)="conc(pesoMaximoDecolagem, pesoVazioBasico, pesTripuPax)" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button>
   </div>
+  <!--Div do calculo do balanceamento-->
   <div id="capitulo">
     <h1>Calculo de Balanceamento</h1>
     <ion-item>
@@ -235,23 +237,23 @@
     </ion-item>
     <ion-item>
       <ion-label class="form" position="floating">Ocupantes poltronas dianteira (kg)</ion-label>
-      <ion-input type="number" clear-input="true" (keyup)="pd = $event.target.value" placeholder="Digite o peso dos ocupantes" id="poltDiant"></ion-input>
+      <ion-input type="number" clear-input="true" formControlName="ocupantesDianteiros" (keyup)="pd = $event.target.value" placeholder="Digite o peso dos ocupantes" id="poltDiant"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label class="form" position="floating">Ocupantes poltronas centrais(kg)</ion-label>
-      <ion-input type="number" clear-input="true" (keyup)="pc = $event.target.value" placeholder="Digite o peso dos ocupantes" id="poltCent"></ion-input>
+      <ion-input type="number" clear-input="true" formControlName = "ocupantesCentrais" (keyup)="pc = $event.target.value" placeholder="Digite o peso dos ocupantes" id="poltCent"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label class="form" position="floating">Ocupantes poltronas traseiras (kg)</ion-label>
-      <ion-input type="number" clear-input="true" (keyup)="pt = $event.target.value" placeholder="Digite o peso dos ocupantes" id="poltTras"></ion-input>
+      <ion-input type="number" clear-input="true" formControlName = "ocupantesTraseiros" (keyup)="pt = $event.target.value" placeholder="Digite o peso dos ocupantes" id="poltTras"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label class="form" position="floating">Bagageiro Dianteiro (45Kg máx)</ion-label>
-      <ion-input type="number" clear-input="true" (keyup)="bd = $event.target.value" placeholder="Digite o peso das bagagens" id="bagDiant"></ion-input>
+      <ion-input type="number" clear-input="true" formControlName = "bagageiroDianteiro" (keyup)="bd = $event.target.value" placeholder="Digite o peso das bagagens" id="bagDiant"></ion-input>
     </ion-item> 
     <ion-item>
       <ion-label class="form" position="floating">Bagageiro Traseiro (45Kg máx)</ion-label>
-      <ion-input type="number" clear-input="true" (keyup)="btr = $event.target.value" placeholder="Digite o peso das bagagens" id="bagTras"></ion-input>
+      <ion-input type="number" clear-input="true" formControlName = "bagageiroTraseiro" (keyup)="btr = $event.target.value" placeholder="Digite o peso das bagagens" id="bagTras"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label class="form" position="floating">Peso Zero Combustível* (1638,29Kg máx)</ion-label>
@@ -263,7 +265,7 @@
     </ion-item>
     <ion-item>
       <ion-label class="form" position="floating">Peso de Decolagem*</ion-label>
-      <ion-input type="number" disabled [value] = "pad" placeholder="Peso de Decolagem" id="pAd"></ion-input>
+      <ion-input type="number" disabled [value] = "pad" formControlName = "pad" placeholder="Peso de Decolagem" id="pAd"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label class="form" position="floating">Combustível da Etapa*</ion-label>
@@ -271,7 +273,7 @@
     </ion-item>
     <ion-item>
       <ion-label class="form" position="floating">Peso de Pouso*</ion-label>
-      <ion-input type="number" disabled [value] = "pap" placeholder="Peso de Pouso" id="pesPouso"></ion-input>
+      <ion-input type="number" disabled [value] = "pap" formControlName = "pap" placeholder="Peso de Pouso" id="pesPouso"></ion-input>
     </ion-item>
     <ion-button [disabled]="erroPeso" (click)="bal(pesoVazioBasico, pd, pc, pt, bd, btr, etapa)" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Calcular Balanceamento</ion-button>
   </div>
@@ -281,5 +283,8 @@
   <span *ngIf="cGp" id="danger"><p>Centro de gravidade no Pouso está fora dos limites</p></span>
   <span *ngIf="ok" id="danger"><p>O centro de gravidade está dentro do envelope</p></span>
   <span *ngIf="ok" id="danger"><p>O centro de gravidade é {{centrogravidade}}m</p></span>
+  <ion-button type="submit">Arquivar Calculo</ion-button>
+  <ion-input *ngIf="true" type="text" [value]="cgd" formControlName = "cgd"  placeholder="Centro de Gravidade de decolagem"></ion-input>
+  <ion-input *ngIf="true" type="text" [value]="cgp" formControlName = "cgp"  placeholder="Centro de Gravidade de pouso"></ion-input>
 </form>
 </ion-content>
