@@ -31,6 +31,8 @@ export class PesoPage implements OnInit {
       cgp: [this.cgp],
       data: [this.hoje]
     })
+    
+
   }
   
   constructor(private formBilder: FormBuilder,

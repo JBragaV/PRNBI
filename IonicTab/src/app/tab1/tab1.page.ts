@@ -4,6 +4,8 @@ import { EnginePage } from '../engine/engine.page';
 import { Secao2Page } from '../secao2/secao2.page';
 import { Secao3Page } from '../secao3/secao3.page';
 import { Secao4Page } from '../secao4/secao4.page';
+import { myEnterAnimation } from '../animacao/enter';
+import { myLeaveAnimation } from '../animacao/leave';
 
 @Component({
   selector: 'app-tab1',
@@ -25,9 +27,11 @@ export class Tab1Page {
   }
 
   async mdlEgn(){
-    this.presentLoadingWithOptions()
+    //this.presentLoadingWithOptions()
     const modal = await this.modalController.create({
-      component: EnginePage
+      component: EnginePage,
+      enterAnimation: myEnterAnimation,
+      leaveAnimation: myLeaveAnimation
     });
     return modal.present();
   }

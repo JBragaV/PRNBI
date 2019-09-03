@@ -47,6 +47,22 @@
       "cgp": "2.344",
       "data": "2/8/2019",
       "id": 3
+    },
+    {
+      "autonomiaL": 370.43999999999994,
+      "autonomiaK": 266.72,
+      "payLoad": 168.27999999999997,
+      "ocupantesDianteiros": 100,
+      "ocupantesCentrais": 0,
+      "ocupantesTraseiros": 100,
+      "bagageiroDianteiro": 45,
+      "bagageiroTraseiro": 45,
+      "pad": 1826.72,
+      "pap": 1589.64,
+      "cgd": "2.374",
+      "cgp": "2.374",
+      "data": "3/8/2019",
+      "id": 4
     }
   ]
 }
