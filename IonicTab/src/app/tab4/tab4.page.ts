@@ -68,7 +68,6 @@ export class Tab4Page implements OnInit {
     )
   }
   logar(){
-    
     let {nome, email, endereco, password, data} = this.formulario.controls;
     if(!this.formulario.valid){
       if(!nome.valid){

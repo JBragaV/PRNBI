@@ -35,20 +35,20 @@ const routes: Routes = [
       ]
     },
     {
-      path: 'servicos',
-      children: [
-        {
-          path: '',
-          loadChildren: '../servicos/servicos.module#ServicosPageModule'
-        }
-      ]
-    },
-    {
       path: 'peso',
       children: [
         {
           path: '',
           loadChildren: '../peso/peso.module#PesoPageModule'
+        }
+      ]
+    },
+    {
+      path: 'historico',
+      children: [
+        {
+          path: '',
+          loadChildren: '../historico/historico.module#HistoricoPageModule'
         }
       ]
     },

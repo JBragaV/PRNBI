@@ -63,6 +63,38 @@
       "cgp": "2.374",
       "data": "3/8/2019",
       "id": 4
+    },
+    {
+      "autonomiaL": 370.43999999999994,
+      "autonomiaK": 266.72,
+      "payLoad": 178.27999999999997,
+      "ocupantesDianteiros": 190,
+      "ocupantesCentrais": 0,
+      "ocupantesTraseiros": 0,
+      "bagageiroDianteiro": 0,
+      "bagageiroTraseiro": 0,
+      "pad": 1726.72,
+      "pap": 1489.64,
+      "cgd": "2.263",
+      "cgp": "2.244",
+      "data": "4/8/2019",
+      "id": 5
+    },
+    {
+      "autonomiaL": 205.79999999999998,
+      "autonomiaK": 148.1804,
+      "payLoad": 286.81960000000004,
+      "ocupantesDianteiros": 100,
+      "ocupantesCentrais": 100,
+      "ocupantesTraseiros": 0,
+      "bagageiroDianteiro": 45,
+      "bagageiroTraseiro": 45,
+      "pad": 1708.18,
+      "pap": 1648.91,
+      "cgd": "2.318",
+      "cgp": "2.316",
+      "data": "4/8/2019",
+      "id": 6
     }
   ]
 }

@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Historico</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card button="true" *ngFor="let historia of calculos" (click)="revela()">
+    <ion-item>
+      <ion-icon name="airplane" slot="start"></ion-icon>
+      <ion-label>Calculo {{historia.id}}, realizado no dia {{historia.data}} </ion-label>
+    </ion-item>
+    <ion-card-content *ngIf="desce">
+      <p>AutonomiaL: {{historia.autonomiaL}} L</p>
+      <p>AutonomiaK: {{historia.autonomiaK}}</p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

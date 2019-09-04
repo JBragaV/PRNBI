@@ -1,15 +1,16 @@
 export interface calculos{
-    autonomiaL: string,
-    autonomiaK: string,
-    payLoad: string,
-    ocupantesDianteiros: string,
-    ocupantesCentrais: string,
-    ocupantesTraseiros: string,
-    bagageiroDianteiro: string,
-    bagageiroTraseiro: string,
-    pad: string,
-    pap: string,
-    cgd: string,
-    cgp: string,
+    autonomiaL: string
+    autonomiaK: string
+    payLoad: string
+    ocupantesDianteiros: string
+    ocupantesCentrais: string
+    ocupantesTraseiros: string
+    bagageiroDianteiro: string
+    bagageiroTraseiro: string
+    pad: string
+    pap: string
+    cgd: string
+    cgp: string
     data: string
+    id: string
 }
