@@ -58,4 +58,26 @@ export class HistoricoPage implements OnInit {
       this.desce = false
     }
   }
+
+  dataHoje(){
+    let data = new Date()
+    let dia
+    if((data.getDay()+1) > 10){
+      dia = data.getDay()+1
+    }else{
+      dia = `0${data.getDay()+1}`
+    }
+    let mes
+    if((data.getMonth()+1) > 10){
+      mes = data.getMonth()+1
+      console.log(mes)
+    }else{
+      mes = `0${data.getMonth()+1}`
+      console.log(mes)
+    }
+    let ano = data.getFullYear()
+    let segundos = data.getSeconds()
+    return [dia, mes, ano].join("/")
+  }
+  hoje = this.dataHoje()
 }

@@ -1,16 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Historico</ion-title>
+    <ion-title>Historico. Data:{{hoje}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card button="true" *ngFor="let historia of calculos" (click)="revela()">
+  <ion-card button="true" *ngFor="let historia of calculos" (click)="historia.expandir = !historia.expandir">
+      {{historia.expandir}}
     <ion-item>
       <ion-icon name="airplane" slot="start"></ion-icon>
-      <ion-label>Calculo {{historia.id}}, realizado no dia {{historia.data}} </ion-label>
+      <ion-label>Calculo realizado no dia {{historia.data}} </ion-label>
     </ion-item>
-    <ion-card-content *ngIf="desce">
+    <ion-card-content *ngIf="historia.expandir">
       <p>AutonomiaL: {{historia.autonomiaL}} L</p>
       <p>AutonomiaK: {{historia.autonomiaK}}</p>
     </ion-card-content>

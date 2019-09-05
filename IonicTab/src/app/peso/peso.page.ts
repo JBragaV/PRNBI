@@ -29,7 +29,8 @@ export class PesoPage implements OnInit {
       pap: [this.pap],
       cgd: [this.cgd],
       cgp: [this.cgp],
-      data: [this.hoje]
+      data: [this.hoje],
+      expandir:[false]
     })
     
 
@@ -48,7 +49,7 @@ export class PesoPage implements OnInit {
       this.presentAlert(),
       error => this.erroAlert()
     })*/
-    setTimeout(()=>location.reload(),3000)
+    //setTimeout(()=>location.reload(),3000)
     //Pegar o click do alert para recarregar a página...
   }
 
@@ -289,20 +290,23 @@ export class PesoPage implements OnInit {
   dataHoje(){
     let data = new Date()
     let dia
-    if(data.getDay() > 10){
-      dia = data.getDay()
+    if((data.getDay()+1) > 10){
+      dia = data.getDay()+1
     }else{
-      dia = `0${data.getDay()}`
+      dia = `0${data.getDay()+1}`
     }
     let mes
-    if(data.getMonth() > 10){
-      mes = data.getMonth()
+    if((data.getMonth()+1) > 10){
+      mes = data.getMonth()+1
+      console.log(mes)
     }else{
-      mes = `0${data.getMonth()}`
+      mes = `0${data.getMonth()+1}`
+      console.log(mes)
     }
     let ano = data.getFullYear()
     let segundos = data.getSeconds()
     return [dia, mes, ano].join("/")
   }
   hoje = this.dataHoje()
+
 }

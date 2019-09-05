@@ -12,5 +12,6 @@ export interface calculos{
     cgd: string
     cgp: string
     data: string
+    expandir: boolean
     id: string
 }
