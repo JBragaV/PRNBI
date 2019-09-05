@@ -199,7 +199,7 @@
       <ion-button (click)="vml()" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Calcular Combustível</ion-button>
     </div>
     <!--Div do calculo do peso-->
-    <div id="capitulo">
+    <div id="capitulo" *ngIf="erroFuel">
       <h1>Calculo de Peso de Decolagem</h1>
     <ion-item>
       <ion-label  class="form" position="floating">Peso máximo de decolagem(Kg)</ion-label>
@@ -229,7 +229,7 @@
     <ion-button [disabled] = "erroFuel" (click)="conc(pesoMaximoDecolagem, pesoVazioBasico, pesTripuPax)" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button>
   </div>
   <!--Div do calculo do balanceamento-->
-  <div id="capitulo">
+  <div id="capitulo" *ngIf="erroPeso">
     <h1>Calculo de Balanceamento</h1>
     <ion-item>
       <ion-label class="form" position="floating">Peso Básico Vazio (kg)</ion-label>

@@ -288,8 +288,18 @@ export class PesoPage implements OnInit {
   }
   dataHoje(){
     let data = new Date()
-    let dia = data.getDate()
-    let mes = data.getMonth()
+    let dia
+    if(data.getDay() > 10){
+      dia = data.getDay()
+    }else{
+      dia = `0${data.getDay()}`
+    }
+    let mes
+    if(data.getMonth() > 10){
+      mes = data.getMonth()
+    }else{
+      mes = `0${data.getMonth()}`
+    }
     let ano = data.getFullYear()
     let segundos = data.getSeconds()
     return [dia, mes, ano].join("/")
