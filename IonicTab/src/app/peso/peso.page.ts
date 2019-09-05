@@ -183,8 +183,8 @@ export class PesoPage implements OnInit {
 
   horaAdcional(event){
     this.hAdcional = Number(event.detail.value)
-    this.adicional = Number(((event.detail.value * 41.16 * 2)))
-    this.adicionalKg = Number(((this.adicional)*0.72))
+    this.adicional = Number(event.detail.value * 41.16 * 2)
+    this.adicionalKg = Number(this.adicional*0.72)
     if(event.detail.value > this.temporal) {
       ++this.totalAutonomia
     } else
@@ -205,8 +205,8 @@ export class PesoPage implements OnInit {
       this.minReq = Number(this.etapa + this.etapaMinuto + this.Alternado + this.AlternadoMinuto + this.reserva + this.reservaMinuto).toFixed(2)
       this.minReqKg = Number(this.etapaKg + this.etapaKgMinuto + this.alternadoKg +this.AlternadoKgMinuto + this.reservaKg + this.reservaKgMinuto).toFixed(2)
       
-      this.totBord = Number(this.minReq + this.adicional + this.adicionalMinuto).toFixed(2)
-      this.totBordKg = Number(this.minReqKg + this.adicionalKg + this.adicionalKgMinuto).toFixed(2)
+      this.totBord = (Number(this.minReq) + Number(this.adicional) + Number(this.adicionalMinuto)).toFixed(2)
+      this.totBordKg = (Number(this.minReqKg) + Number(this.adicionalKg) + Number(this.adicionalKgMinuto)).toFixed(2)
  
       if(Number(this.totBord > 370.44)){
         this.erroFuel = true
