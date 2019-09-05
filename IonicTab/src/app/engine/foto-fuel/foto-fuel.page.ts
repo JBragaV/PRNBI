@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-foto-fuel',
@@ -11,5 +11,20 @@ export class FotoFuelPage implements OnInit {
 
   ngOnInit() {
   }
+  @ViewChild('slider', { read: ElementRef })slider: ElementRef;
 
+  sliderOpts = {
+    zoom: {
+      maxRatio: 5
+    }
+  };
+
+  zoom(zoomIn: boolean) {
+    let zoom = this.slider.nativeElement.swiper.zoom;
+    if (zoomIn) {
+      zoom.in();
+    } else {
+      zoom.out();
+    }
+  }
 }

@@ -12,7 +12,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class PesoPage implements OnInit {
   
-  calculo: calculos[]
+  calculo: calculos[] = []
   formulario: FormGroup 
   
   ngOnInit() {
@@ -38,13 +38,18 @@ export class PesoPage implements OnInit {
   constructor(private formBilder: FormBuilder,
               private calculoService: CalculoService,
               private alertController: AlertController) { }
-  add(){
+   add(){
     const novoCalculo = this.formulario.getRawValue() as calculos
     console.log(novoCalculo)
-    this.calculoService.add(novoCalculo).subscribe(() => {
+    this.calculoService.add(novoCalculo).then(clcls =>{
+      this.presentAlert()
+    })
+    /*this.calculoService.add1(novoCalculo).subscribe(() => {
       this.presentAlert(),
       error => this.erroAlert()
-    })
+    })*/
+    setTimeout(()=>location.reload(),3000)
+    //Pegar o click do alert para recarregar a página...
   }
 
 
@@ -58,16 +63,7 @@ export class PesoPage implements OnInit {
 
     await alert.present();
   }
-  async erroAlert() {
-    const alert = await this.alertController.create({
-      header: 'Erro',
-      subHeader: 'Não foi adicionado',
-      message: "Erro ao adicionaar os dados no banco!!",
-      buttons: ['OK']
-    });
 
-    await alert.present();
-  }
   //Variaveis de erro.
 
   erroFuel = false // Erro combustível fora do padrão
@@ -185,8 +181,6 @@ export class PesoPage implements OnInit {
   hAdcional = 0
   mAdcional = 0
 
-  
-
   horaAdcional(event){
     this.hAdcional = Number(event.detail.value)
     this.adicional = Number(((event.detail.value * 41.16 * 2)))
@@ -208,11 +202,11 @@ export class PesoPage implements OnInit {
   //Calculo de Autonomia, função que soma e diz se a aeronave está dento dos limites do tanque de combustível
   vml(){
     try{
-      this.minReq = (this.etapa + this.etapaMinuto + this.Alternado + this.AlternadoMinuto + this.reserva + this.reservaMinuto)
-      this.minReqKg = (this.etapaKg + this.etapaKgMinuto + this.alternadoKg +this.AlternadoKgMinuto + this.reservaKg + this.reservaKgMinuto)
+      this.minReq = Number(this.etapa + this.etapaMinuto + this.Alternado + this.AlternadoMinuto + this.reserva + this.reservaMinuto).toFixed(2)
+      this.minReqKg = Number(this.etapaKg + this.etapaKgMinuto + this.alternadoKg +this.AlternadoKgMinuto + this.reservaKg + this.reservaKgMinuto).toFixed(2)
       
-      this.totBord = (this.minReq + this.adicional + this.adicionalMinuto)
-      this.totBordKg = (this.minReqKg + this.adicionalKg + this.adicionalKgMinuto)
+      this.totBord = Number(this.minReq + this.adicional + this.adicionalMinuto).toFixed(2)
+      this.totBordKg = Number(this.minReqKg + this.adicionalKg + this.adicionalKgMinuto).toFixed(2)
  
       if(Number(this.totBord > 370.44)){
         this.erroFuel = true
@@ -234,8 +228,8 @@ export class PesoPage implements OnInit {
   conc(pesoMaximoDecolagem: string, pesoVazioBasico: string, pesTripuPax: string){
     this.PesDispTot = (Number(pesoMaximoDecolagem.replace(",", ".")) - Number(pesoVazioBasico.replace(",", "."))).toFixed(2)
     
-    this.combMinp = (this.PesDispTot - this.minReqKg) - Number(pesTripuPax.replace(",", "."))
-    
+    let temp = (this.PesDispTot - this.minReqKg) - Number(pesTripuPax.replace(",", "."))
+    this.combMinp = temp.toFixed(2)
     if(Number(this.combMinp) < 0 ){
       this.payLoad = true
       this.erroPeso = true

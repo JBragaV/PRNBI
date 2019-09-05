@@ -15,16 +15,18 @@ import { Secao2PageModule } from './secao2/secao2.module';
 import { Secao3PageModule } from './secao3/secao3.module';
 import { Secao4PageModule } from './secao4/secao4.module';
 
+import { IonicStorageModule } from "@ionic/storage";
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [HttpClientModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule, EnginePageModule, FotoFuelPageModule,
-            Secao2PageModule, Secao3PageModule, Secao4PageModule],
+            Secao2PageModule, Secao3PageModule, Secao4PageModule, IonicStorageModule.forRoot()], 
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalculoService } from '../service/calculo.service';
 import { calculos } from '../models/calculo.models';
+import { Platform, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-historico',
@@ -11,15 +12,40 @@ export class HistoricoPage implements OnInit {
 
   desce = false
   calculos: calculos[]
-  constructor(private calculoService: CalculoService) { }
+  constructor(private calculoService: CalculoService,
+              private plt: Platform,
+              private alertController: AlertController) { }
 
   ngOnInit() {
-    this.listar()
+    this.plt.ready().then(()=>{
+      this.listar()
+    })
   }
 
-
   listar(){
-    this.calculoService.getAll().subscribe(
+    this.calculoService.getAll().then(clcls =>{
+      this.calculos = clcls
+    })
+  }
+
+  deletar(calculo: calculos){
+    this.calculoService.delete(calculo.id).then(clcls => {
+      this.presentAlert()
+      this.listar()
+    })
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Sucesso',
+      message: 'Os Dados foram apagados com sucesso!!!',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  listar1(){
+    this.calculoService.getAll1().subscribe(
       historico => this.calculos = historico,
       error => console.log(error)
     )
