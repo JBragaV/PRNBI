@@ -16,6 +16,7 @@ import { Secao3PageModule } from './secao3/secao3.module';
 import { Secao4PageModule } from './secao4/secao4.module';
 
 import { IonicStorageModule } from "@ionic/storage";
+import { EmailComposer } from "@ionic-native/email-composer/ngx";
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { IonicStorageModule } from "@ionic/storage";
   providers: [
     StatusBar,
     SplashScreen,
+    EmailComposer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]

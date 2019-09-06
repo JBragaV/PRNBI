@@ -26,11 +26,11 @@ const routes: Routes = [
       ]
     },
       {
-      path: 'form',
+      path: 'about',
       children: [
         {
           path: '',
-          loadChildren: '../form/form.module#FormPageModule'
+          loadChildren: '../about/about.module#AboutPageModule'
         }
       ]
     },
