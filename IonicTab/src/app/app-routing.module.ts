@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: 'tab4', loadChildren: './tab4/tab4.module#Tab4PageModule' },
   { path: 'form', loadChildren: './form/form.module#FormPageModule' },
   { path: 'peso', loadChildren: './peso/peso.module#PesoPageModule' },  { path: 'historico', loadChildren: './historico/historico.module#HistoricoPageModule' },
+  { path: 'about', loadChildren: './about/about.module#AboutPageModule' },
 
 
 

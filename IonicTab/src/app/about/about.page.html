@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sobre</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="formulario" (submit)="enviar()">
+    <ion-label>E-mail:</ion-label>
+    <ion-input formControlName="email" (ionChange)="emailUsuario=$event.target.value"placeholder="Digite o seu E-mail" type="email" required></ion-input>
+    <ion-label>Título:</ion-label>
+    <ion-input formControlName="titulo" (ionChange)="titulo=$event.target.value"placeholder="Digite um Título" type="text" ></ion-input>
+    <ion-label>Texto</ion-label>
+    <ion-textarea formControlName="corpo" required (ionChange)="corpo=$event.target.value" autoGrow="true" placeholder="Escreva aqui sua critica, elogio, sugestão de melhoria ou dúvidas"></ion-textarea>
+    <ion-button type="submit" [disabled]="formulario.invalid">Enviar</ion-button>
+  </form>
+</ion-content>

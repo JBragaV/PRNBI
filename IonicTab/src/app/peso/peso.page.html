@@ -2,6 +2,7 @@
   <ion-toolbar color="primary">
     <ion-title class="ion-text-center">Peso e Balanceamento</ion-title>
   </ion-toolbar>
+  <ion-searchbar animated cancelButtonText="Custom Cancel"></ion-searchbar>
 </ion-header>
 <ion-content padding fullscreen>
   <ion-button href="tabs/historico" routerDirection="forward" size="large">Historico</ion-button>
@@ -170,20 +171,6 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label class="form" position="floating">autonomia total</ion-label>
-              <ion-input type="number"  disabled [value] = "totalAutonomia"  placeholder="autonomia total" ></ion-input>
-            </ion-item>   
-          </ion-col>
-          <ion-col>
-            <ion-item>
-                <ion-label class="form" position="floating">autonomia total</ion-label>
-                <ion-input type="number" disabled [value] = "totalAutonomia"  placeholder="autonomia total" ></ion-input>
-            </ion-item> 
-          </ion-col>  
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-item>
               <ion-label class="form" position="floating">Total a Bordo (Litros)</ion-label>
               <ion-input type="number" [value]="totBord"  disabled formControlName="autonomiaL" id="totalBordo" placeholder="Total a Bordo"></ion-input>
             </ion-item>
@@ -280,8 +267,8 @@
   </div>
   <span *ngIf="pesoMaximoPouso" id="danger"><p>Peso Máximo de pouso excedido</p></span>
   <span *ngIf="cGd" id="danger"><p>Centro de gravidade na Decolagem está fora dos limites.</p></span>
-  <span *ngIf="cGd" id="danger"><p>Seu centro de gravidade é de {{centrogravidade}}m. CG Dianteiro = 2,049m e CG traseiro = 2.402m</p></span>
   <span *ngIf="cGp" id="danger"><p>Centro de gravidade no Pouso está fora dos limites</p></span>
+  <span *ngIf="cGd" id="danger"><p>Seu centro de gravidade é de {{centrogravidade}}m. CG Dianteiro = 2,049m e CG traseiro = 2.402m</p></span>
   <span *ngIf="ok" id="danger"><p>O centro de gravidade está dentro do envelope</p></span>
   <span *ngIf="ok" id="danger"><p>O centro de gravidade é {{centrogravidade}}m</p></span>
   <ion-button type="submit">Arquivar Calculo</ion-button>
