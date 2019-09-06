@@ -81,9 +81,7 @@
       },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-sqlite-storage": {},
-      "cordova-plugin-email-composer": {
-        "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      }
+      "cordova-plugin-email-composer": {}
     },
     "platforms": [
       "android"
