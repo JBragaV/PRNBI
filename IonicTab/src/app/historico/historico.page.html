@@ -6,10 +6,12 @@
 
 <ion-content>
   <ion-card button="true" *ngFor="let historia of calculos" (click)="historia.expandir = !historia.expandir">
-      {{historia.expandir}}
     <ion-item>
       <ion-icon name="airplane" slot="start"></ion-icon>
-      <ion-label>Calculo realizado no dia {{historia.data}} </ion-label>
+      <ion-label>
+        <h3>Calculo do dia {{historia.data}}</h3>
+        <h5>Teste</h5>
+      </ion-label>
     </ion-item>
     <ion-card-content *ngIf="historia.expandir">
       <p>AutonomiaL: {{historia.autonomiaL}} L</p>

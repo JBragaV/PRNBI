@@ -12,23 +12,42 @@
         <ion-card-title class="ion-text-center">Seneca I</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p class="ion-text-center">Vamos estudar a aeronave mais usada para o curso de MLTE(multimotor terreste) nas escolas e aeroclubes pelo Brasil.</p>
+        <h2 class="ion-text-center"><strong>Aqui você encontra o material necessário para poder estudar e assim realizar um voo seguro 
+          no Seneca I da escola.</strong></h2>
+        <p class="ion-text-center">Está separado em 4 Seções: Seção 1: Aeronaves e Sistemas, Seção 2: Limitações, 
+          Seção 3: Procedimentos Normais, Seção 4: Procedimentos de emergência.</p>
+        <p class="ion-text-center">Ainda tem uma área para ajudar no calculo de peso e balancemento.</p>
       </ion-card-content>
     </ion-card>
   <ion-row>
-    <ion-col col="6" align-self-start>
-      <ion-item (click)="mdlEgn()"><ion-img class="icones" src="./assets/seneca/motor.jpg"></ion-img></ion-item>
+    <ion-col class="container" col="6" >
+      <ion-item ><ion-img class="icones image" src="./assets/icon/secao2.jpg"></ion-img>
+        <div class="overlayUD">
+          <div class="text" (click)="mdlEgn()"><h4>Seção 1</h4><p class="para">Aeronave</p><p class="para">e Sistemas</p></div>
+        </div>
+      </ion-item>
     </ion-col>
-    <ion-col col="6" align-self-end>
-      <ion-item  (click)="mdlSc2()"><ion-img class="icones" src="./assets/icon/secao2.jpg"></ion-img></ion-item>
+    <ion-col class="container" col="6" align-self-end>
+      <ion-item><ion-img class="icones image" src="./assets/seneca/motor.jpg"></ion-img>
+        <div class="overlayUD">
+          <div class="text" (click)="mdlSc2()"><h4>Seção 2</h4><p class="para">Limitações</p></div>
+        </div>
+      </ion-item>
     </ion-col>  
   </ion-row>
   <ion-row>
-      <ion-col col="6">
-        <ion-item (click)="mdlSc3()"><ion-img class="icones" src="./assets/icon/lavagem.png"></ion-img></ion-item>
+      <ion-col class="container" col="6" align-self-start>
+        <ion-item><ion-img class="icones image" src="./assets/icon/seneca_Icon.jpg"></ion-img>
+          <div class="overlayDU">
+              <div class="text" (click)="mdlSc3()"><h4>Seção 3</h4><p class="para">Procedimentos</p><p class="normal">Normais</p></div>
+            </div>
+        </ion-item>
       </ion-col>
-      <ion-col col="6">
-        <ion-item (click)="mdlSc4()"><ion-img class="icones" src="./assets/icon/manutencao.png"></ion-img></ion-item>
+      <ion-col class="container" col="6" align-self-start>
+        <ion-item><ion-img class="icones image" src="./assets/icon/aviaopoucoemergencia.jpg"></ion-img>
+          <div class="overlayDU">
+            <div class="text" (click)="mdlSc4()"><h4>Seção 4</h4><p class="emergency">Procedimentos</p><p class="emergency">de emergência</p></div>
+          </div></ion-item>
       </ion-col>  
     </ion-row>
 </ion-content>
