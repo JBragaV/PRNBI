@@ -46,7 +46,6 @@ export class CalculoService {
       console.log(id)
       console.log(c.id !== id)
       if(c.id !== id){
-        console.log(`Passei...${c}`)
         toKeep.push(c)
       }
     }

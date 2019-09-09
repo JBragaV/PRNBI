@@ -270,8 +270,10 @@
   <span *ngIf="cGd" id="danger"><p>Seu centro de gravidade é de {{centrogravidade}}m. CG Dianteiro = 2,049m e CG traseiro = 2.402m</p></span>
   <span *ngIf="ok" id="danger"><p>O centro de gravidade está dentro do envelope</p></span>
   <span *ngIf="ok" id="danger"><p>O centro de gravidade é {{centrogravidade}}m</p></span>
-  <ion-button type="submit">Arquivar Calculo</ion-button>
-  <ion-input *ngIf="true" type="text" [value]="cgd" formControlName = "cgd"  placeholder="Centro de Gravidade de decolagem"></ion-input>
-  <ion-input *ngIf="true" type="text" [value]="cgp" formControlName = "cgp"  placeholder="Centro de Gravidade de pouso"></ion-input>
+  <ion-button type="submit">Arquivar Calculo</ion-button><p></p>
+  <ion-label position="floating">Centro de gravidade na decolagem</ion-label>
+  <ion-input  type="text" [value]="cgd" formControlName = "cgd" ></ion-input>
+  <ion-label position="floating">Centro de gravidade no pouso</ion-label>
+  <ion-input  type="text" [value]="cgp" formControlName = "cgp" ></ion-input>
 </form>
 </ion-content>
