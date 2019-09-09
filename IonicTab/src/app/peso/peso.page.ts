@@ -30,12 +30,13 @@ export class PesoPage implements OnInit {
       cgd: [this.cgd],
       cgp: [this.cgp],
       data: [this.hoje],
-      expandir:[false]
+      expandir:[false],
+      id: [(new Date().toString())]
     })
     
 
   }
-  
+  data 
   constructor(private formBilder: FormBuilder,
               private calculoService: CalculoService,
               private alertController: AlertController) { }

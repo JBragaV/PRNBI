@@ -29,6 +29,7 @@ export class HistoricoPage implements OnInit {
   }
 
   deletar(calculo: calculos){
+    console.log(calculo)
     this.calculoService.delete(calculo.id).then(clcls => {
       this.presentAlert()
       this.listar()

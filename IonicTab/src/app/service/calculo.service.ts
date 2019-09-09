@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { calculos } from '../models/calculo.models';
 import { Storage } from "@ionic/storage";
-
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx'
 
 //realizar a conexao com o servidor carregando o driver do banco
 const API_URL = 'http://localhost:3000';
@@ -33,15 +33,20 @@ export class CalculoService {
   getAll(){
     return this.storage.get(CALCULOS_KEY)
   }
-
-  delete(id: string): Promise<calculos>{
+  //FAZER OS AJUSTES PARA O DELETE E, TALVEZ, RALIZAR 
+  //OS AJUSTES PARA O SQLITE(MELHOR)
+  delete(id: number): Promise<calculos>{
     return this.storage.get(CALCULOS_KEY).then((clcls: calculos[])=>{
       if(!clcls || clcls.length === 0){
         return null
       }
     let toKeep: calculos[] = []
     for(let c of clcls){
-      if(c.id !== id){
+      console.log(c.id)
+      console.log(id)
+      console.log(c.id !== id)
+      if(c.id === id){
+        console.log(`Passei...${c}`)
         toKeep.push(c)
       }
     }
