@@ -33,7 +33,7 @@ export class CalculoService {
   getAll(){
     return this.storage.get(CALCULOS_KEY)
   }
-  //FAZER OS AJUSTES PARA O DELETE E, TALVEZ, RALIZAR 
+
   //OS AJUSTES PARA O SQLITE(MELHOR)
   delete(id: number): Promise<calculos>{
     return this.storage.get(CALCULOS_KEY).then((clcls: calculos[])=>{
@@ -45,7 +45,7 @@ export class CalculoService {
       console.log(c.id)
       console.log(id)
       console.log(c.id !== id)
-      if(c.id === id){
+      if(c.id !== id){
         console.log(`Passei...${c}`)
         toKeep.push(c)
       }
@@ -62,6 +62,6 @@ export class CalculoService {
   }
 
   delete1(id: string){
-    return this.http.delete(`${API_URL}/calculos/${id}`, httpOptions)
+    return this.http.delete(`${API_URL}/historico/${id}`, httpOptions)
   }
 }

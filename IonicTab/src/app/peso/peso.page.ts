@@ -31,7 +31,7 @@ export class PesoPage implements OnInit {
       cgp: [this.cgp],
       data: [this.hoje],
       expandir:[false],
-      id: [(new Date().toString())]
+      id: [Date.now()]
     })
     
 
@@ -41,17 +41,19 @@ export class PesoPage implements OnInit {
               private calculoService: CalculoService,
               private alertController: AlertController) { }
    add(){
+
     const novoCalculo = this.formulario.getRawValue() as calculos
     console.log(novoCalculo)
     this.calculoService.add(novoCalculo).then(clcls =>{
       this.presentAlert()
+      setTimeout(()=>location.reload(),3000)
     })
     /*this.calculoService.add1(novoCalculo).subscribe(() => {
       this.presentAlert(),
-      error => this.erroAlert()
-    })*/
-    //setTimeout(()=>location.reload(),3000)
-    //Pegar o click do alert para recarregar a página...
+      error => console.log(error)
+    })
+    setTimeout(()=>location.reload(),3000)
+    //Pegar o click do alert para recarregar a página...*/
   }
 
 

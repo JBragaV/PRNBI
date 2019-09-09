@@ -19,6 +19,7 @@ export class HistoricoPage implements OnInit {
   ngOnInit() {
     this.plt.ready().then(()=>{
       this.listar()
+      //this.listarJson()
     })
   }
 
@@ -27,15 +28,28 @@ export class HistoricoPage implements OnInit {
       this.calculos = clcls
     })
   }
+  listarJson(){
+    this.calculoService.getAll1().subscribe(clcls =>{
+      this.calculos = clcls
+    })
+  }
 
   deletar(calculo: calculos){
     console.log(calculo)
     this.calculoService.delete(calculo.id).then(clcls => {
       this.presentAlert()
-      this.listar()
+      setTimeout(()=> this.listar(),100)
     })
   }
 
+  deletarJson(id: string){
+    console.log(id)
+    this.calculoService.delete1(id).subscribe(()=>{
+      this.presentAlert(),
+      error => console.log(error)
+    })
+    setTimeout(()=> this.listarJson(),100)
+  }
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Sucesso',
@@ -52,21 +66,14 @@ export class HistoricoPage implements OnInit {
     )
   }
 
-  revela(){
-    if(this.desce == false){
-      this.desce = true
-    }else{
-      this.desce = false
-    }
-  }
 
   dataHoje(){
     let data = new Date()
     let dia
-    if((data.getDay()+1) > 10){
-      dia = data.getDay()+1
+    if((data.getDate()) > 10){
+      dia = data.getDate()
     }else{
-      dia = `0${data.getDay()+1}`
+      dia = `0${data.getDate()}`
     }
     let mes
     if((data.getMonth()+1) > 10){
@@ -81,4 +88,5 @@ export class HistoricoPage implements OnInit {
     return [dia, mes, ano].join("/")
   }
   hoje = this.dataHoje()
+  
 }
